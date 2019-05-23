@@ -20,6 +20,7 @@ const Loading: React.FunctionComponent<ILoadingProps> = ({
     <div className={classes.container}>
       <div className={loadingCls}>
         <Spinner 
+          className={classes.spinner}
           animation='border' 
           variant='primary' 
         />

@@ -10,6 +10,8 @@ interface IPopularState {
 
 class Popular extends React.Component<any, IPopularState> {
 
+  private page = 0;
+
   constructor(props: any) {
     super(props)
     this.state = {
@@ -46,22 +48,28 @@ class Popular extends React.Component<any, IPopularState> {
         data: {
           q: 'JavaScript',
           sort: 'stars',
+          page: ++this.page,
+          per_page: 30,
         },
       })
-      this.setState({ repositories: items, })
+      this.setState(({ repositories }) => {
+        return {
+          repositories: repositories.concat(items),
+          loading: false,
+        }
+      })
     } catch (e) {
       console.log(e)
-    } finally {
       this.setState({ loading: false })
     }
   }
 
-  private handleScroll(ev: UIEvent) {
-    console.log(ev)
-    const { scrollHeight, scrollTop, clientHeight } = ev.target as HTMLBodyElement
-    console.log(scrollHeight, scrollTop, clientHeight)
+  private handleScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement
     if (scrollHeight - scrollTop - clientHeight <= 100) {
-      console.log('load more...')
+      if (!this.state.loading) {
+        this.fetchRepositories()
+      }
     }
   }
 
