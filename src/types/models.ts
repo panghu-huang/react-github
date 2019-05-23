@@ -46,7 +46,7 @@ export interface IForkEventPayload {
 export type IPusherType = string
 
 export interface ICreateEventPayload {
-  ref_type: 'repository'
+  ref_type: 'repository' | 'branch' | 'tag'
   master_branch: string
   description: string
   pusher_type: IPusherType
@@ -54,7 +54,7 @@ export interface ICreateEventPayload {
 
 export interface IDeleteEventPayload {
   ref: string
-  ref_type: string
+  ref_type: 'branch' | 'tag'
   pusher_type: IPusherType
 }
 

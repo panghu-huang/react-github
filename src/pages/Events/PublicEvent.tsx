@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { ListGroup, Card } from 'react-bootstrap'
 import { IEvent } from 'src/types'
+import Avatar from './Avatar'
 import Time from './Time'
 import Strong from './Strong'
 import Key from './Key'
@@ -16,11 +17,7 @@ const PublicEvent: React.FunctionComponent<IPublicEventProps> = ({ event }) => {
     <ListGroup.Item>
       <Card>
         <Card.Header className={classes.header}>
-          <img 
-            className={classes.avatar}
-            src={actor.avatar_url} 
-            alt={actor.login} 
-          />
+          <Avatar user={actor}/>
           <div>
             <Strong>{actor.login}</Strong>
             <Key>made</Key>

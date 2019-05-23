@@ -2,6 +2,7 @@ import * as React from 'react'
 import { ListGroup, Card } from 'react-bootstrap'
 import { Text, Title } from 'src/theme'
 import { IEvent, IForkEventPayload } from 'src/types'
+import Avatar from './Avatar'
 import Time from './Time'
 import Strong from './Strong'
 import Key from './Key'
@@ -18,11 +19,7 @@ const ForkEvent: React.FunctionComponent<IForkEventProps> = ({ event }) => {
     <ListGroup.Item>
       <Card>
         <Card.Header className={classes.header}>
-          <img 
-            className={classes.avatar}
-            src={actor.avatar_url} 
-            alt={actor.login} 
-          />
+          <Avatar user={actor}/>
           <div>
             <Strong>{actor.login}</Strong>
             <Key>forked</Key>
