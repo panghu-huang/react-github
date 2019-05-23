@@ -7,9 +7,9 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "react": "^16.8.1",
+    "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.8.1",
+    "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts-ts": "^4.0.8",
     "react-storer": "^0.0.2"
@@ -18,7 +18,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "count": "cloc ./ --exclude-dir=node_modules,build,.idea,public --include-ext=ts,tsx,js,jsx"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
