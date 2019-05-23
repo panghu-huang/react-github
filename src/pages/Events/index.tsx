@@ -8,42 +8,25 @@ import ForkEvent from './ForkEvent'
 import WatchEvent from './WatchEvent'
 import PublicEvent from './PublicEvent'
 
-export interface IEventsState {
-  loading: boolean
-  events: IEvent[]
-}
-
-class Events extends React.Component<any, IEventsState> {
-
-  public static contextType = StoreContext
-  public readonly context: React.ContextType<typeof StoreContext>
-
-  private page = 0
-
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      loading: false,
-      events: [],
+const Events: React.FunctionComponent = () => {
+  const context = React.useContext(StoreContext)
+  const [loading, setLoading] = React.useState(true)
+  const [events, setEvents] = React.useState<IEvent[]>([])
+  const fetchEvents = async () => {
+    try {
+      setLoading(true)
+      const service = new ApiService<IEvent[]>('users')
+      const evts = await service.get({
+        path: `${context.login}/received_events`
+      })
+      setEvents(evts)
+    } catch (e) {
+      console.log(e)
+    } finally {
+      setLoading(false)
     }
   }
-
-  public componentDidMount() {
-    this.fetchEvents()
-  }
-
-  public render() {
-    const { loading, events } = this.state
-    return (
-      <List 
-        loading={loading}
-        list={events}
-        renderItem={this.renderEvent}
-      />
-    )
-  }
-
-  private renderEvent(event: IEvent) {
+  const renderEvent = (event: IEvent) => {
     switch(event.type) {
       case EventType.ForkEvent:
         return (
@@ -61,30 +44,16 @@ class Events extends React.Component<any, IEventsState> {
         return null
     }
   }
-
-  private fetchEvents = async () => {
-    try {
-      this.setState({ loading: true })
-      const service = new ApiService<IEvent[]>('users')
-      const evts = await service.get({
-        path: `${this.context.login}/received_events`,
-        data: {
-          per_page: 30,
-          page: ++this.page,
-        }
-      })
-      console.log(evts)
-      this.setState(({ events }) => {
-        return {
-          events: events.concat(evts),
-          loading: false,
-        }
-      })
-    } catch (e) {
-      console.log(e)
-      this.setState({ loading: false })
-    }
-  }
+  React.useEffect(() => {
+    fetchEvents()
+  } ,[])
+  return (
+    <List 
+      loading={loading}
+      list={events}
+      renderItem={renderEvent}
+    />
+  )
 }
 
 export default Events 

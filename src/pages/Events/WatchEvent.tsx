@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { ListGroup, Card } from 'react-bootstrap'
-import { Text, Title } from 'src/theme'
 import { IEvent, IWatchEventPayload } from 'src/types'
 import Time from './Time'
 import Strong from './Strong'
@@ -17,7 +16,7 @@ const WatchEvent: React.FunctionComponent<IWatchEventProps> = ({ event }) => {
   return (
     <ListGroup.Item>
       <Card>
-        <Card.Header className={classes.header}>
+        <Card.Body className={classes.header}>
           <img 
             className={classes.avatar}
             src={actor.avatar_url} 
@@ -29,12 +28,6 @@ const WatchEvent: React.FunctionComponent<IWatchEventProps> = ({ event }) => {
             <Strong>{repo.name}</Strong>
           </div>
           <Time time={created_at} />
-        </Card.Header>
-        <Card.Body>
-          <Title>{repo.name}</Title>
-          <p>
-            <Text>description</Text>
-          </p>
         </Card.Body>
       </Card>
     </ListGroup.Item>

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { ListGroup, Card } from 'react-bootstrap'
-import { Text, Title } from 'src/theme'
 import { IEvent } from 'src/types'
 import Time from './Time'
 import Strong from './Strong'
@@ -30,12 +29,6 @@ const PublicEvent: React.FunctionComponent<IPublicEventProps> = ({ event }) => {
           </div>
           <Time time={created_at} />
         </Card.Header>
-        <Card.Body>
-          <Title>{repo.name}</Title>
-          <p>
-            <Text>dddd</Text>
-          </p>
-        </Card.Body>
       </Card>
     </ListGroup.Item>
   )

@@ -1,17 +1,25 @@
 import * as React from 'react'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import { ThemeContext } from 'src/theme'
+import { actions } from 'src/store'
 
 const Header: React.FunctionComponent = () => {
+  const [activeKey, setActiveKey] = React.useState(
+    window.location.pathname
+  )
   const { changeTheme } = React.useContext(ThemeContext)
+  const handleSelect = (eventKey: string) => {
+    setActiveKey(eventKey)
+    actions.history.push(eventKey)
+  }
   return (
     <Navbar bg='dark' variant='dark'>
-      <Navbar.Brand>Github</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Brand href='/'>Github</Navbar.Brand>
       <Navbar.Collapse>
-        <Nav className="mr-auto">
-          <Nav.Link href="/events">Events</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
+        <Nav 
+          activeKey={activeKey}
+          onSelect={handleSelect}>
+          <Nav.Link eventKey='/events'>Events</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Form inline={true}>

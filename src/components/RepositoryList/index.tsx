@@ -9,10 +9,11 @@ import classes from './RepositoryList.module.scss'
 interface IRepositoryListProps {
   loading: boolean
   repositories: IRepository[]
+  loadMore: () => void
 }
 
 const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({ 
-  repositories, loading,
+  repositories, loading, loadMore,
 }) => {
   const { theme } = React.useContext(ThemeContext)
   const formatStars = (stars: number) => {
@@ -48,6 +49,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
       list={repositories}
       loading={loading}
       renderItem={itemRenderer}
+      loadMore={loadMore}
     />
   )
 }
