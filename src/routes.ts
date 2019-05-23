@@ -5,6 +5,10 @@ const routes: RouteProps[] = [
   {
     path: '/',
     component: pages.Popular,
+  },
+  {
+    path: '/events',
+    component: pages.Events,
   }
 ]
 

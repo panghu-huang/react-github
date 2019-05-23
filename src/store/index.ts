@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history'
 import { IStore } from 'src/types'
 
 const initialState: IStore = {
+  login: 'wokeyi',
   history: createBrowserHistory(),
 }
 
@@ -13,3 +14,5 @@ const otherActions = {
 export const storer = genStorer<IStore, typeof otherActions>(initialState, otherActions)
 
 export const actions = storer.genActions()
+
+export const StoreContext = storer.genContext()

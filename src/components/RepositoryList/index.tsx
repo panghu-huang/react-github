@@ -1,7 +1,7 @@
 import * as React from 'react'
-import * as moment from 'moment'
 import { Card, ListGroup } from 'react-bootstrap'
 import { ThemeContext, Text, Title } from 'src/theme'
+import { TimeUtils } from 'src/utils'
 import { IRepository } from 'src/types'
 import List from '../List'
 import classes from './RepositoryList.module.scss'
@@ -38,7 +38,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
         </Card.Body>
         <Card.Footer className={classes.other}>
           <Text>{repository.language}</Text>
-          <Text>{moment(repository.updated_at).endOf().fromNow()}</Text>
+          <Text>{TimeUtils.fromNow(repository.updated_at)}</Text>
         </Card.Footer>
       </Card>
     </ListGroup.Item>

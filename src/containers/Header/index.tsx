@@ -10,7 +10,7 @@ const Header: React.FunctionComponent = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="/events">Events</Nav.Link>
           <Nav.Link href="#link">Link</Nav.Link>
         </Nav>
       </Navbar.Collapse>

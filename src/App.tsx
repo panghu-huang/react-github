@@ -1,38 +1,45 @@
 import * as React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { Header } from 'src/containers'
-import { actions, storer } from 'src/store'
+import { StoreContext, actions, storer } from 'src/store'
 import { ThemeProvider } from 'src/theme'
+import { IStore } from 'src/types'
 import { Theme, SAVED_THEME_KEY } from 'src/config'
 import routes from './routes'
 import './global.scss'
 
-class App extends React.Component {
+class App extends React.Component<any, IStore> {
   private readonly theme: Theme;
 
   constructor(props: any) {
     super(props);
-    storer.bindSetStore(this.setState)
+    this.state = {
+      login: 'wokeyi',
+      history: actions.history,
+    }
+    storer.bindSetStore(this.setState as any)
     this.theme = this.getThemeConfigFromStorage()
   }
 
   public render() {
     return (
       <ThemeProvider theme={this.theme}>
-        <Header />
-        <Router history={actions.history}>
-          <Switch>
-            {routes.map(route => {
-              return (
-                <Route
-                  exact={true}
-                  key={route.path as string}
-                  {...route}
-                />
-              )
-            })}
-          </Switch>
-        </Router>
+        <StoreContext.Provider value={this.state}>
+          <Header />
+          <Router history={actions.history}>
+            <Switch>
+              {routes.map(route => {
+                return (
+                  <Route
+                    exact={true}
+                    key={route.path as string}
+                    {...route}
+                  />
+                )
+              })}
+            </Switch>
+          </Router>
+        </StoreContext.Provider>
       </ThemeProvider>
     )
   }
