@@ -1,10 +1,14 @@
 import * as React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
-import { Header } from 'src/containers'
 import { StoreContext, actions, storer } from 'src/store'
+import { Header } from 'src/containers'
 import { ThemeProvider } from 'src/theme'
+import { 
+  Theme, 
+  SAVED_THEME_KEY, 
+  DEFAULT_LOGIN_NAME 
+} from 'src/config'
 import { IStore } from 'src/types'
-import { Theme, SAVED_THEME_KEY } from 'src/config'
 import routes from './routes'
 import './global.scss'
 
@@ -14,8 +18,7 @@ class App extends React.Component<any, IStore> {
   constructor(props: any) {
     super(props);
     this.state = {
-      login: 'wokeyi',
-      history: actions.history,
+      login: DEFAULT_LOGIN_NAME,
     }
     storer.bindSetStore(this.setState as any)
     this.theme = this.getThemeConfigFromStorage()

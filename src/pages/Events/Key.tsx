@@ -1,9 +1,10 @@
 import * as React from 'react'
+import { Text } from 'src/theme'
 import classes from './Events.module.scss'
 
 const Key: React.FunctionComponent = ({ children }) => {
   return (
-    <span className={classes.key}>{children}</span>
+    <Text className={classes.key}>{children}</Text>
   )
 }
 

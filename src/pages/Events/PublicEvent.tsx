@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { ListGroup, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
+import { ItemWrapper } from 'src/components'
 import { IEvent } from 'src/types'
 import Avatar from './Avatar'
 import Time from './Time'
@@ -14,20 +15,18 @@ interface IPublicEventProps {
 const PublicEvent: React.FunctionComponent<IPublicEventProps> = ({ event }) => {
   const { actor, repo, created_at } = event
   return (
-    <ListGroup.Item>
-      <Card>
-        <Card.Header className={classes.header}>
-          <Avatar user={actor}/>
-          <div>
-            <Strong>{actor.login}</Strong>
-            <Key>made</Key>
-            <Strong>{repo.name}</Strong>
-            <Key>public</Key>
-          </div>
-          <Time time={created_at} />
-        </Card.Header>
-      </Card>
-    </ListGroup.Item>
+    <ItemWrapper>
+      <Card.Header className={classes.header}>
+        <Avatar user={actor} />
+        <div>
+          <Strong>{actor.login}</Strong>
+          <Key>made</Key>
+          <Strong>{repo.name}</Strong>
+          <Key>public</Key>
+        </div>
+        <Time time={created_at} />
+      </Card.Header>
+    </ItemWrapper>
   )
 }
 
