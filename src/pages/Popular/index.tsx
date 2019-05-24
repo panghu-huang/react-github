@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ApiService } from 'src/services'
-import { RepositoryList } from 'src/components'
+import { Page, RepositoryList } from 'src/components'
 import { IRepository, ISearchRepositories } from 'src/types'
 
 let page = 0
@@ -33,11 +33,13 @@ const Popular: React.FunctionComponent = () => {
     fetchRepositories()
   }, [])
   return (
-    <RepositoryList
-      loading={loading}
-      repositories={repositories}
-      loadMore={fetchRepositories}
-    />
+    <Page title='popular JavaScript repositories'>
+      <RepositoryList
+        loading={loading}
+        repositories={repositories}
+        loadMore={fetchRepositories}
+      />
+    </Page>
   )
 }
 

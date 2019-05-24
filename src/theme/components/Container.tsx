@@ -5,12 +5,14 @@ interface IContainerProps extends React.AllHTMLAttributes<HTMLDivElement> {
   children: React.ReactNode,
 }
 
-const Container: React.FunctionComponent<IContainerProps> = ({ children, style }) => {
+const Container: React.FunctionComponent<IContainerProps> = ({ children, style, ...otherProps }) => {
   const { colors } = React.useContext(ThemeContext)
   return (
-    <div style={{ ...style, backgroundColor: colors.backgroundColor }}>
+    <section 
+      {...otherProps}
+      style={{ ...style, backgroundColor: colors.backgroundColor }}>
       {children}
-    </div>
+    </section>
   )
 }
 

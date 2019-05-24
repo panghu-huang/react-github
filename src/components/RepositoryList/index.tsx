@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { Text, Title } from 'src/theme'
 import { TimeUtils } from 'src/utils'
 import { IRepository } from 'src/types'
@@ -20,24 +21,28 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
   const formatStars = (stars: number) => {
     return stars > 1000 ? `${+(stars / 1000).toFixed(1)}k` : stars
   }
-  const itemRenderer = (repository: IRepository) => (
-    <ItemWrapper key={repository.id}>
+  const itemRenderer = ({ 
+    full_name, id, stargazers_count, description, language, updated_at,
+  }: IRepository) => (
+    <ItemWrapper key={id}>
       <Card.Body>
         <Card.Title className={classes.titleWrapper}>
           <Title className={classes.title}>
-            {repository.full_name}
+            <Link to={`/repositories/${full_name}`}>
+              {full_name}
+            </Link>
           </Title>
           <Text className={classes.stars}>
-            {formatStars(repository.stargazers_count)}
+            {formatStars(stargazers_count)}
           </Text>
         </Card.Title>
         <Card.Text>
-          <Text>{repository.description}</Text>
+          <Text>{description}</Text>
         </Card.Text>
       </Card.Body>
       <Card.Footer className={classes.other}>
-        <Language language={repository.language} />
-        <Text>{TimeUtils.fromNow(repository.updated_at)}</Text>
+        <Language language={language} />
+        <Text>{TimeUtils.fromNow(updated_at)}</Text>
       </Card.Footer>
     </ItemWrapper>
   )

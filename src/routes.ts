@@ -7,13 +7,14 @@ const routes: RouteProps[] = [
     component: pages.Popular,
   },
   {
-    path: '/events',
-    component: pages.Events,
-  },
-  {
     path: '/activities',
     component: pages.Activity,
-  }
+  },
+  {
+    path: '/repositories/:owner/:name',
+    exact: false,
+    component: pages.Repository,
+  },
 ]
 
 export default routes

@@ -13,6 +13,11 @@ export const enum EventType {
   CreateEvent = 'CreateEvent',
 }
 
+export const enum ContentType {
+  File = 'file',
+  Dir = 'dir',
+}
+
 export const languageColors = {
   JavaScript: '#f1e05a',
   TypeScript: '#2b7489',

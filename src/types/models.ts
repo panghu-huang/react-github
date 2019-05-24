@@ -23,6 +23,15 @@ export interface IRepository {
   stargazers_count: number
   watchers_count: number
   owner: IUser
+  default_branch: string
+}
+
+export interface IRepositoryContent {
+  type: 'file' | 'dir'
+  name: string
+  path: string
+  content: string
+  url: string
 }
 
 export interface IEvent {
