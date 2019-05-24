@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { Page } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
+import Head from './Head'
 
 interface IParams {
   owner: string
@@ -46,8 +47,15 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
   }
 
   public render() {
+    const { repository } = this.state
     return (
-      <Page title={`${this.owner}/${this.name}`}>repository</Page>
+      <Page title={`${this.owner}/${this.name}`}>
+        <Head 
+          name={this.name}
+          owner={this.owner}
+          repository={repository}
+        />
+      </Page>
     )
   }
 

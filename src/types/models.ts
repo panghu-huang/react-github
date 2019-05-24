@@ -22,6 +22,8 @@ export interface IRepository {
   updated_at: string
   stargazers_count: number
   watchers_count: number
+  subscribers_count: number
+  forks_count: number
   owner: IUser
   default_branch: string
 }
