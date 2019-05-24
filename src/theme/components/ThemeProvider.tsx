@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Theme, lightThemeColors, darkThemeColors } from 'src/config'
 import { ThemeContext } from '../ThemeContext'
+import Container from './Container'
 
 interface IThemeProviderProps {
   theme?: Theme,
@@ -17,9 +18,9 @@ const ThemeProvider: React.FunctionComponent<IThemeProviderProps> = ({
   }
   return (
     <ThemeContext.Provider value={{ theme: currentTheme, changeTheme, colors }}>
-      <div style={{ backgroundColor: colors.backgroundColor }}>
+      <Container>
         {children}
-      </div>
+      </Container>
     </ThemeContext.Provider>
   )
 }

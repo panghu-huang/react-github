@@ -1,33 +1,42 @@
 import * as React from 'react'
 import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
-import { IEvent, IWatchEventPayload } from 'src/types'
+import { Text, Title } from 'src/theme'
+import { IEvent, IForkEventPayload } from 'src/types'
 import Avatar from './Avatar'
 import Time from './Time'
 import Strong from './Strong'
 import Key from './Key'
 import classes from './Events.module.scss'
 
-interface IWatchEventProps {
+interface IForkEventProps {
   event: IEvent
 }
 
-const WatchEvent: React.FunctionComponent<IWatchEventProps> = ({ event }) => {
+const ForkEvent: React.FunctionComponent<IForkEventProps> = ({ event }) => {
   const { payload, actor, repo, created_at } = event
-  const watchEventPayload = payload as IWatchEventPayload
+  const { forkee } = payload as IForkEventPayload
   return (
     <ItemWrapper>
-      <Card.Body className={classes.header}>
+      <Card.Header className={classes.header}>
         <Avatar user={actor} />
         <div>
           <Strong>{actor.login}</Strong>
-          <Key>{watchEventPayload.action}</Key>
+          <Key>forked</Key>
+          <Strong>{forkee.full_name}</Strong>
+          <Key>from</Key>
           <Strong>{repo.name}</Strong>
         </div>
         <Time time={created_at} />
+      </Card.Header>
+      <Card.Body>
+        <Title>{repo.name}</Title>
+        <p>
+          <Text>{forkee.description}</Text>
+        </p>
       </Card.Body>
     </ItemWrapper>
   )
 }
 
-export default WatchEvent
+export default ForkEvent

@@ -9,6 +9,10 @@ const routes: RouteProps[] = [
   {
     path: '/events',
     component: pages.Events,
+  },
+  {
+    path: '/activities',
+    component: pages.Activity,
   }
 ]
 

@@ -12,12 +12,16 @@ interface ILoadingProps {
 const Loading: React.FunctionComponent<ILoadingProps> = ({
   loading = true, children,
 }) => {
+  const containerCls = classNames(
+    classes.container,
+    loading && classes.withMinHeight,
+  )
   const loadingCls = classNames(
     classes.loading,
     !loading && classes.hidden,
   )
   return (
-    <div className={classes.container}>
+    <div className={containerCls}>
       <div className={loadingCls}>
         <Spinner 
           className={classes.spinner}

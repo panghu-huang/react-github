@@ -5,6 +5,7 @@ import { TimeUtils } from 'src/utils'
 import { IRepository } from 'src/types'
 import List from '../List'
 import ItemWrapper from '../ItemWrapper'
+import Language from './Language'
 import classes from './RepositoryList.module.scss'
 
 interface IRepositoryListProps {
@@ -20,7 +21,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
     return stars > 1000 ? `${+(stars / 1000).toFixed(1)}k` : stars
   }
   const itemRenderer = (repository: IRepository) => (
-    <ItemWrapper>
+    <ItemWrapper key={repository.id}>
       <Card.Body>
         <Card.Title className={classes.titleWrapper}>
           <Title className={classes.title}>
@@ -35,7 +36,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
         </Card.Text>
       </Card.Body>
       <Card.Footer className={classes.other}>
-        <Text>{repository.language}</Text>
+        <Language language={repository.language} />
         <Text>{TimeUtils.fromNow(repository.updated_at)}</Text>
       </Card.Footer>
     </ItemWrapper>

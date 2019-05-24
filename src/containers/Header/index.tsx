@@ -19,7 +19,7 @@ const Header: React.FunctionComponent = () => {
         <Nav 
           activeKey={activeKey}
           onSelect={handleSelect}>
-          <Nav.Link eventKey='/events'>Events</Nav.Link>
+          <Nav.Link eventKey='/activities'>Activities</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Form inline={true}>
