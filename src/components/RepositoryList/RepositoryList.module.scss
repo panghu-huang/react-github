@@ -11,6 +11,16 @@
   font-size: 12px;
 }
 
-.other span {
+.language {
+  display: inline-flex;
+  align-items: center;
   margin-right: 20px;
+}
+
+.languageColor {
+ display: inline-block;
+ width: 12px;
+ height: 12px;
+ border-radius: 50%; 
+ margin-right: 4px;
 }

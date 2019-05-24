@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.withMinHeight {
+  min-height: 80px;
+}
+
 .loading {
   position: absolute;
   top: 0;

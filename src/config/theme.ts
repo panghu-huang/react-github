@@ -6,7 +6,7 @@ export const enum Theme {
 export const SAVED_THEME_KEY = 'theme_config'
 
 export const lightThemeColors = {
-  backgroundColor: '',
+  backgroundColor: 'white',
   primaryColor: '',
   secondaryColor: '',
   titleColor: '',
@@ -16,7 +16,7 @@ export const lightThemeColors = {
 }
 
 export const darkThemeColors = {
-  backgroundColor: '',
+  backgroundColor: '#1b1e21',
   primaryColor: '',
   secondaryColor: '',
   titleColor: 'rgba(255, 255, 255, 0.9)',

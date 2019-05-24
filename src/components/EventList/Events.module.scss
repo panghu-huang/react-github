@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.darkAvatar {
+  border: 1px solid rgba(white, 0.4);
+}
+
+.key {
+  margin: 0 6px;
+}
+
+.time {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-left: 6px;
+  margin-top: 3px;
+}

@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
@@ -17,11 +18,13 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "count": "cloc ./ --exclude-dir=node_modules,build,.idea,public --include-ext=ts,tsx,js,jsx"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.13",
+    "@types/lodash": "^4.14.130",
     "@types/moment": "^2.13.0",
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.18",

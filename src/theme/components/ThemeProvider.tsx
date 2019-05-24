@@ -17,9 +17,7 @@ const ThemeProvider: React.FunctionComponent<IThemeProviderProps> = ({
   }
   return (
     <ThemeContext.Provider value={{ theme: currentTheme, changeTheme, colors }}>
-      <div style={{ backgroundColor: colors.backgroundColor }}>
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   )
 }

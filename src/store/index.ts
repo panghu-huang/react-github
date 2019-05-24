@@ -1,15 +1,18 @@
 import { genStorer } from 'react-storer'
 import { createBrowserHistory } from 'history'
+import { DEFAULT_LOGIN_NAME } from 'src/config'
 import { IStore } from 'src/types'
 
 const initialState: IStore = {
-  history: createBrowserHistory(),
+  login: DEFAULT_LOGIN_NAME,
 }
 
 const otherActions = {
-  history: initialState.history,
+  history: createBrowserHistory(),
 }
 
 export const storer = genStorer<IStore, typeof otherActions>(initialState, otherActions)
 
 export const actions = storer.genActions()
+
+export const StoreContext = storer.genContext()
