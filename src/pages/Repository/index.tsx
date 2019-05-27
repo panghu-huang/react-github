@@ -5,7 +5,7 @@ import { Page } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
 import Head from './Head'
-import Contents from './Contents'
+import RepositoryCode from './RepositoryCode'
 import classes from './Repository.module.scss'
 
 interface IParams {
@@ -23,21 +23,14 @@ interface IRepositoryState {
 
 class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
 
-  private readonly owner: string
-  private readonly name: string
+  private owner: string
+  private name: string
   private branch: string
   private path: string
 
   constructor(props: IRepositoryProps) {
     super(props)
-    const { owner, name  } = props.match.params
-    const { branch, path } = this.getBranchAndFullPath(
-      owner, name,
-    )
-    this.owner = owner
-    this.name = name
-    this.branch = branch
-    this.path = path
+    this.initialize(props)
     this.state = {
       activeKey: 'code',
       contents: [],
@@ -68,7 +61,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
             className={classes.tab}
             eventKey='code'
             title='Code'>
-            <Contents 
+            <RepositoryCode
               name={this.name}
               owner={this.owner}
               branch={this.branch}
@@ -86,6 +79,13 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
     )
   }
 
+  public componentDidUpdate(prevProps: IRepositoryProps) {
+    if (this.props.match.params !== prevProps.match.params) {
+      this.initialize(this.props)
+      this.fetchRepository()
+    }
+  }
+
   private fetchRepository = async () => {
     try {
       const service = new ApiService('repos')
@@ -96,6 +96,17 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  private initialize(props: IRepositoryProps) {
+    const { owner, name  } = props.match.params
+    const { branch, path } = this.getBranchAndFullPath(
+      owner, name,
+    )
+    this.owner = owner
+    this.name = name
+    this.branch = branch
+    this.path = path
   }
 
   private getBranchAndFullPath(owner: string, name: string) {
@@ -116,7 +127,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
       }
     }
     return {
-      branch: '',
+      branch: 'master',
       path: '',
     }
   }

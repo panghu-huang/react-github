@@ -26,7 +26,7 @@ list, loading, renderItem, loadMore, hasLoadAll,
       const { scrollTop, clientHeight, scrollHeight } = document.documentElement
       if (scrollHeight - scrollTop - clientHeight <= 10) {
         if (!loading) {
-          loadMore()
+          loader()
         }
       }
     }, 500)
