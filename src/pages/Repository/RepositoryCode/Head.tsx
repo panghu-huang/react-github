@@ -49,7 +49,7 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
           variant={theme}>
           {branches.map(branch => (
             <Dropdown.Item 
-              key={branch}
+              key={branch.name}
               eventKey={branch.name} 
               onSelect={this.changeBranch}>
               {branch.name}
