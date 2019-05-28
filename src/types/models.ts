@@ -3,10 +3,14 @@ import { EventType } from 'src/config'
 export interface IUser {
   id: number
   login: string
+  bio: string
   name: string
   location: string
   repos_url: string
   avatar_url: string
+  blog: string
+  public_repos: string
+  public_gists: string
   followers: number
   following: number
 }

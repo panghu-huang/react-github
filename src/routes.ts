@@ -15,6 +15,10 @@ const routes: RouteProps[] = [
     exact: false,
     component: pages.Repository,
   },
+  {
+    path: '/users/:name',
+    component: pages.User,
+  },
 ]
 
 export default routes

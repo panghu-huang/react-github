@@ -1,0 +1,10 @@
+.infoBar {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.infoBar .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

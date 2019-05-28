@@ -6,11 +6,13 @@ interface IPageProps {
   title: string
 }
 
+const appName = process.env.REACT_APP_NAME
+
 const Page: React.FunctionComponent<IPageProps> = ({
   title, children,
 }) => {
   React.useEffect(() => {
-    document.title = title
+    document.title = `${title} - ${appName}`
     return () => {
       document.title = ''
     }

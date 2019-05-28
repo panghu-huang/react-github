@@ -1,6 +1,6 @@
 export const enum UserType {
-  User = 'user',
-  Organization = 'organization',
+  User = 'User',
+  Organization = 'Organization',
 }
 
 export const enum EventType {

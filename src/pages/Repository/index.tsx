@@ -58,7 +58,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
           className={classes.tabs}
           onSelect={this.handleTabChange}>
           <Tab 
-            className={classes.tab}
+            className='tab-item'
             eventKey='code'
             title='Code'>
             <RepositoryCode
@@ -69,7 +69,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
             />
           </Tab>
           <Tab 
-            className={classes.tab}
+            className='tab-item'
             eventKey='issues'
             title='Issues'>
             Issues

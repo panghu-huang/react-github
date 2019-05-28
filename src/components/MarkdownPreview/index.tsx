@@ -1,8 +1,8 @@
 import * as React from 'react'
+import hljs from 'highlight.js'
 // @ts-ignore
 import markd from 'markit'
-// @ts-ignore
-import * as hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
 import './style.scss'
 
 interface IMarkdownPreviewProps {
