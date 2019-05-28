@@ -4,7 +4,7 @@ import { Tabs, Tab } from 'react-bootstrap'
 import { Page } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
-import Head from './Head'
+import RepositoryHead from './Head'
 import RepositoryCode from './RepositoryCode'
 import classes from './Repository.module.scss'
 
@@ -36,7 +36,6 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
       contents: [],
       repository: null,
     }
-    console.log(this.branch, this.path || 'empty path')
   }
 
   public componentDidMount() {
@@ -47,7 +46,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
     const { repository, activeKey } = this.state
     return (
       <Page title={`${this.owner}/${this.name}`}>
-        <Head 
+        <RepositoryHead 
           name={this.name}
           owner={this.owner}
           repository={repository}

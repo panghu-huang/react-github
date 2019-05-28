@@ -4,13 +4,13 @@ import { Text } from 'src/theme'
 import { IRepository } from 'src/types'
 import classes from './Head.module.scss'
 
-interface IHeadProps {
+interface IRepositoryHeadProps {
   owner: string
   name: string
   repository: IRepository | null
 }
 
-const Head: React.FunctionComponent<IHeadProps> = ({
+const RepositoryHead: React.FunctionComponent<IRepositoryHeadProps> = ({
   owner, name, repository,
 }) => {
   return (
@@ -52,4 +52,4 @@ const Head: React.FunctionComponent<IHeadProps> = ({
   )
 }
 
-export default Head
+export default RepositoryHead

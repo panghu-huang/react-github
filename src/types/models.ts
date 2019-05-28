@@ -106,3 +106,7 @@ export interface ICommit {
   message: string
   url: string
 }
+
+export interface IBranch {
+  name: string
+}
