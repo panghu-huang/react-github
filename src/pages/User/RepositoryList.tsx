@@ -2,27 +2,35 @@ import * as React from 'react'
 import { ApiService } from 'src/services'
 import { Page, RepositoryList } from 'src/components'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
-import { IRepository, ISearchRepositories } from 'src/types'
+import { IRepository } from 'src/types'
+
+interface IUserRepositoryListProps {
+  name: string
+}
 
 let page = 0
 
-const Popular: React.FunctionComponent = () => {
+const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
+  name,
+}) => {
   const [loading, setLoading] = React.useState(true)
   const [repositories, setRepositories] = React.useState<IRepository[]>([])
+  const [hasLoadAll, setHasLoadAll] = React.useState(false)
   const fetchRepositories = async () => {
     try {
       setLoading(true)
-      const service = new ApiService<ISearchRepositories>('search')
-      const { items } = await service.get({
-        path: 'repositories',
+      const service = new ApiService<IRepository[]>('users')
+      const results = await service.get({
+        path: `${name}/repos`,
         data: {
-          q: 'JavaScript',
-          sort: 'stars',
           page: ++page,
           per_page: DEFAULT_PAGE_SIZE,
         },
       })
-      setRepositories(repositories.concat(items))
+      setRepositories(repositories.concat(results))
+      if (results.length <= DEFAULT_PAGE_SIZE) {
+        setHasLoadAll(true)
+      }
     } catch (e) {
       console.log(e)
     } finally {
@@ -34,14 +42,15 @@ const Popular: React.FunctionComponent = () => {
     fetchRepositories()
   }, [])
   return (
-    <Page title='popular JavaScript repositories'>
+    <Page title='Repositories'>
       <RepositoryList
         loading={loading}
         repositories={repositories}
         loadMore={fetchRepositories}
+        hasLoadAll={hasLoadAll}
       />
     </Page>
   )
 }
 
-export default Popular
+export default UserRepositoryList

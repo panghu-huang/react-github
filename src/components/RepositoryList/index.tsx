@@ -13,6 +13,7 @@ interface IRepositoryListProps {
   loading: boolean
   repositories: IRepository[]
   loadMore: () => void
+  hasLoadAll?: boolean
 }
 
 const formatStars = (stars: number) => {
@@ -20,7 +21,7 @@ const formatStars = (stars: number) => {
 }
 
 const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({ 
-  repositories, loading, loadMore,
+  repositories, loading, loadMore, hasLoadAll,
 }) => {
   const itemRenderer = ({ 
     full_name, id, stargazers_count, description, language, updated_at,
@@ -53,6 +54,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
       loading={loading}
       renderItem={itemRenderer}
       loadMore={loadMore}
+      hasLoadAll={hasLoadAll}
     />
   )
 }

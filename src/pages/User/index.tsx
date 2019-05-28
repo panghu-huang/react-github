@@ -5,6 +5,7 @@ import { ApiService } from 'src/services'
 import { Page, Loading } from 'src/components'
 import { IUser } from 'src/types'
 import InfoBar from './InfoBar'
+import UserRepositoryList from './RepositoryList'
 
 interface IParams {
   name: string
@@ -49,7 +50,7 @@ const User: React.FunctionComponent<IUserProps> = ({
           className='tab-item'
           eventKey='repositories' 
           title='Repositories'>
-          repositories
+          <UserRepositoryList name={name} />
         </Tab>
       </Tabs>
     </Page>
