@@ -1,0 +1,9 @@
+.content {
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.content span::before {
+  margin-right: 5px;
+}

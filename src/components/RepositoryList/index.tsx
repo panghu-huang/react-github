@@ -15,12 +15,13 @@ interface IRepositoryListProps {
   loadMore: () => void
 }
 
+const formatStars = (stars: number) => {
+  return stars > 1000 ? `${+(stars / 1000).toFixed(1)}k` : stars
+}
+
 const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({ 
   repositories, loading, loadMore,
 }) => {
-  const formatStars = (stars: number) => {
-    return stars > 1000 ? `${+(stars / 1000).toFixed(1)}k` : stars
-  }
   const itemRenderer = ({ 
     full_name, id, stargazers_count, description, language, updated_at,
   }: IRepository) => (

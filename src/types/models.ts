@@ -3,10 +3,14 @@ import { EventType } from 'src/config'
 export interface IUser {
   id: number
   login: string
+  bio: string
   name: string
   location: string
   repos_url: string
   avatar_url: string
+  blog: string
+  public_repos: string
+  public_gists: string
   followers: number
   following: number
 }
@@ -22,6 +26,8 @@ export interface IRepository {
   updated_at: string
   stargazers_count: number
   watchers_count: number
+  subscribers_count: number
+  forks_count: number
   owner: IUser
   default_branch: string
 }

@@ -3,7 +3,6 @@ import { Tabs, Tab } from 'react-bootstrap'
 import { Page } from 'src/components'
 import ReceivedEvents from './ReceivedEvents'
 import Events from './Events'
-import classes from './Activity.module.scss'
 
 const Activity: React.FunctionComponent = () => {
   const [activeKey, setActiveKey] = React.useState('received_events')
@@ -14,19 +13,18 @@ const Activity: React.FunctionComponent = () => {
     <Page title={activeKey}>
       <Tabs
         id='event-tabs'
-        className={classes.container}
         activeKey={activeKey}
         onSelect={handleSelect}>
         <Tab
           eventKey='received_events'
           title='Received Events'
-          className={classes.tab}>
+          className='tab-item'>
           <ReceivedEvents />
         </Tab>
         <Tab
           eventKey='events'
           title='Events'
-          className={classes.tab}>
+          className='tab-item'>
           <Events activeKey={activeKey} />
         </Tab>
       </Tabs>
