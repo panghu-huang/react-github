@@ -1,38 +1,21 @@
-import * as React from 'react';
+import * as React from 'react'
 // @ts-ignore
-import markd from 'markit';
+import markd from 'markit'
 // @ts-ignore
-import * as hljs from 'highlight.js/lib/highlight';
-// @ts-ignore
-import * as javascript from 'highlight.js/lib/languages/javascript';
-// @ts-ignore
-import * as css from 'highlight.js/lib/languages/css';
-import './style.scss';
-
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('css', css);
+import * as hljs from 'highlight.js'
+import './style.scss'
 
 interface IMarkdownPreviewProps {
-  markdown: string;
-  className?: string;
-  transform?: boolean;
-};
+  markdown: string
+  className?: string
+  transform?: boolean
+}
 
 markd.setOptions({
-  // highlight: (code: string, lang: string) => {
-  //   if (lang && hljs.getLanguage(lang)) {
-  //     try {
-  //       return hljs.highlight(lang, code).value;
-  //     } catch (__) {
-  //       // do nothing
-  //     }
-  //   }
-  //   return code;
-  // }
   highlight: (code: string) => {
     return hljs.highlightAuto(code).value
   }
-});
+})
 
 const MarkdownPreview = ({ markdown, transform, className }: IMarkdownPreviewProps) => {
   return (
@@ -47,6 +30,6 @@ const MarkdownPreview = ({ markdown, transform, className }: IMarkdownPreviewPro
 
 MarkdownPreview.defaultProps = {
   className: '',
-};
+}
 
-export default React.memo(MarkdownPreview);
+export default React.memo(MarkdownPreview)
