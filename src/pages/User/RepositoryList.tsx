@@ -28,7 +28,7 @@ const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
         },
       })
       setRepositories(repositories.concat(results))
-      if (results.length <= DEFAULT_PAGE_SIZE) {
+      if (results.length < DEFAULT_PAGE_SIZE) {
         setHasLoadAll(true)
       }
     } catch (e) {
