@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
 import { Title, Text } from 'src/theme'
 import { IEvent, ICreateEventPayload } from 'src/types'
+import RepositoryLink from './RepositoryLink'
 import Avatar from '../Avatar'
 import Time from './Time'
 import Strong from './Strong'
@@ -23,13 +24,14 @@ const CreateEvent: React.FunctionComponent<ICreateEventProps> = ({ event }) => {
           <Avatar user={actor} />
           <div>
             <Key>创建了</Key>
-            <Strong>{repo.name}</Strong>
-            <Key>仓库</Key>
+            <RepositoryLink fullName={repo.name}/>
           </div>
           <Time time={created_at} />
         </Card.Header>
         <Card.Body>
-          <Title>{repo.name}</Title>
+          <Title>
+            <RepositoryLink fullName={repo.name}/>
+          </Title>
           <Text>{description}</Text>
         </Card.Body>
       </ItemWrapper>
@@ -41,7 +43,7 @@ const CreateEvent: React.FunctionComponent<ICreateEventProps> = ({ event }) => {
           <Avatar user={actor} />
           <div>
             <Key>创建了</Key>
-            <Strong>{repo.name}</Strong>
+            <RepositoryLink fullName={repo.name}/>
             <Key>的</Key>
             <Strong>{ref}</Strong>
             <Key>分支</Key>

@@ -3,6 +3,8 @@ import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
 import { Paragraph } from 'src/theme'
 import { IEvent, IPullRequestEventPayload } from 'src/types'
+import RepositoryLink from './RepositoryLink'
+import LoginLink from './LoginLink'
 import Avatar from '../Avatar'
 import Time from './Time'
 import Strong from './Strong'
@@ -31,9 +33,9 @@ const PullRequestEvent: React.FunctionComponent<IPullRequestEventProps> = ({ eve
       <Card.Header className={classes.header}>
         <Avatar user={actor} />
         <div>
-          <Strong>{actor.login}</Strong>
+          <LoginLink login={actor.login}/>
           <Key>{getAction()}</Key>
-          <Strong>{repo.name}</Strong>
+          <RepositoryLink fullName={repo.name}/>
           <Key>的</Key>
           <Strong>{pull_request.title}</Strong>
         </div>

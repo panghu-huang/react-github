@@ -3,9 +3,10 @@ import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
 import { Text, Title } from 'src/theme'
 import { IEvent, IForkEventPayload } from 'src/types'
+import RepositoryLink from './RepositoryLink'
+import LoginLink from './LoginLink'
 import Avatar from '../Avatar'
 import Time from './Time'
-import Strong from './Strong'
 import Key from './Key'
 import classes from './Events.module.scss'
 
@@ -21,16 +22,18 @@ const ForkEvent: React.FunctionComponent<IForkEventProps> = ({ event }) => {
       <Card.Header className={classes.header}>
         <Avatar user={actor} />
         <div>
-          <Strong>{actor.login}</Strong>
+          <LoginLink login={actor.login}/>
           <Key>forked</Key>
-          <Strong>{forkee.full_name}</Strong>
+          <RepositoryLink fullName={forkee.full_name}/>
           <Key>from</Key>
-          <Strong>{repo.name}</Strong>
+          <RepositoryLink fullName={repo.name}/>
         </div>
         <Time time={created_at} />
       </Card.Header>
       <Card.Body>
-        <Title>{repo.name}</Title>
+        <Title>
+          <RepositoryLink fullName={repo.name}/>
+        </Title>
         <p>
           <Text>{forkee.description}</Text>
         </p>

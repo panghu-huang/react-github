@@ -2,9 +2,10 @@ import * as React from 'react'
 import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
 import { IEvent } from 'src/types'
+import RepositoryLink from './RepositoryLink'
+import LoginLink from './LoginLink'
 import Avatar from '../Avatar'
 import Time from './Time'
-import Strong from './Strong'
 import Key from './Key'
 import classes from './Events.module.scss'
 
@@ -19,9 +20,9 @@ const PublicEvent: React.FunctionComponent<IPublicEventProps> = ({ event }) => {
       <Card.Header className={classes.header}>
         <Avatar user={actor} />
         <div>
-          <Strong>{actor.login}</Strong>
+          <LoginLink login={actor.login}/>
           <Key>made</Key>
-          <Strong>{repo.name}</Strong>
+          <RepositoryLink fullName={repo.name}/>
           <Key>public</Key>
         </div>
         <Time time={created_at} />
