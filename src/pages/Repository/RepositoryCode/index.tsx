@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { ApiService } from 'src/services'
+import { Loading } from 'src/components'
 import { IRepositoryContent } from 'src/types'
 import { ContentType } from 'src/config'
 import RepositpryCodeHead from './Head'
 import RepositoryContents from './Contents'
 import RepositoryContent from './Content'
+import classes from './RepositoryCode.module.scss'
 
 interface IRepositoryCodeProps {
   owner: string
@@ -17,6 +19,8 @@ interface IRepositoryCodeState {
   loading: boolean
   contents: IRepositoryContent[]
   content: IRepositoryContent | null
+  readmeLoading: boolean
+  readme: IRepositoryContent | null
 }
 
 type IResult = IRepositoryContent[] | IRepositoryContent
@@ -32,16 +36,20 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
       loading: false,
       contents: [],
       content: null,
+      readmeLoading: false,
+      readme: null,
     }
   }
 
   public componentDidMount() {
     this.fetchContents()
+    this.fetchRepositoryReadme()
   }
 
   public render() {
     const { owner, name, path } = this.props
     const content = this.renderMainContent()
+    const readme = this.renderReadme()
     return (
       <div>
         <RepositpryCodeHead 
@@ -52,6 +60,7 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
           onBranchChange={this.handleBranchChange}
         />
         {content}
+        {readme}
       </div>
     )
   }
@@ -59,6 +68,7 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
   public componentDidUpdate(prevProps: IRepositoryCodeProps) {
     if (prevProps !== this.props) {
       this.fetchContents()
+      this.fetchRepositoryReadme()
     }
   }
 
@@ -73,6 +83,27 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
         contents={contents}
         {...this.props}
       />
+    )
+  }
+
+  private renderReadme() {
+    const { readme, readmeLoading } = this.state
+    if (this.props.path) {
+      return null
+    }
+    return (
+      <Loading loading={readmeLoading}>
+        {readme && (
+          <div className={classes.readme}>
+            <p className={classes.readmeTitle}>
+              {readme.name}
+            </p>
+            <div className={classes.readmeContent}>
+              <RepositoryContent content={readme} />
+            </div>
+          </div>
+        )}
+      </Loading>
     )
   }
 
@@ -100,6 +131,29 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
     } catch (error) {
       console.log(error)
       this.setState({ loading: false })
+    }
+  }
+
+  private fetchRepositoryReadme = async () => {
+    if (this.props.path) {
+      return
+    }
+    try {
+      this.setState({ readmeLoading: true })
+      const { owner, name } = this.props
+      const service = new ApiService<IRepositoryContent>('repos')
+      const readme = await service.get({
+        path: `${owner}/${name}/readme`,
+      })
+      this.setState({
+        readmeLoading: false,
+        readme,
+      })
+    } catch (error) {
+      console.log(error)
+      this.setState({
+        readmeLoading: false,
+      })
     }
   }
 

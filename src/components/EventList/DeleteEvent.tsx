@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Card } from 'react-bootstrap'
 import { ItemWrapper } from 'src/components'
 import { IEvent, IDeleteEventPayload } from 'src/types'
+import RepositoryLink from './RepositoryLink'
 import Avatar from '../Avatar'
 import Time from './Time'
 import Strong from './Strong'
@@ -21,7 +22,7 @@ const DeleteEvent: React.FunctionComponent<IDeleteEventProps> = ({ event }) => {
         return (
           <>
             <Key>删除了</Key>
-            <Strong>{repo.name}</Strong>
+            <RepositoryLink fullName={repo.name}/>
             <Key>的</Key>
             <Strong>{ref}</Strong>
             <Key>分支</Key>

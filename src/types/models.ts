@@ -9,8 +9,8 @@ export interface IUser {
   repos_url: string
   avatar_url: string
   blog: string
-  public_repos: string
-  public_gists: string
+  public_repos: number
+  public_gists: number
   followers: number
   following: number
 }
