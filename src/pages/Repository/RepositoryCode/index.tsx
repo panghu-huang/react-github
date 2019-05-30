@@ -3,7 +3,7 @@ import { ApiService } from 'src/services'
 import { Loading } from 'src/components'
 import { IRepositoryContent } from 'src/types'
 import { ContentType } from 'src/config'
-import RepositpryCodeHead from './Head'
+import RepositoryCodeHead from './Head'
 import RepositoryContents from './Contents'
 import RepositoryContent from './Content'
 import classes from './RepositoryCode.module.scss'
@@ -52,7 +52,7 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
     const readme = this.renderReadme()
     return (
       <div>
-        <RepositpryCodeHead 
+        <RepositoryCodeHead
           branch={this.branch}
           owner={owner}
           name={name}
