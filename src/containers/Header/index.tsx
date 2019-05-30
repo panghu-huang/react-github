@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Input } from 'src/components'
 import classNames from 'classnames'
 import classes from './Header.module.scss'
@@ -16,7 +16,9 @@ const Header: React.FunctionComponent = () => {
         </h3>
         <ul>
           <li>
-            <Link to='/activities'>Activities</Link>
+            <NavLink to='/activities' activeClassName={classes.activeLink}>
+              Activities
+            </NavLink>
           </li>
         </ul>
       </nav>

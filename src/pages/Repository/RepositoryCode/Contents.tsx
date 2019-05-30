@@ -29,7 +29,7 @@ const RepositoryContents: React.FunctionComponent<IRepositoryContentsProps> = ({
         key={content.name}
         className={classes.content}>
         <span className={cls}>
-          <Link to={`/repositories/${owner}/${name}/${branch}/${updatedPath}`}>
+          <Link to={`/repositories/${owner}/${name}/${updatedPath}?branch=${branch}`}>
             {content.name}
           </Link>
         </span>

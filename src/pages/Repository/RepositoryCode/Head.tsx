@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Pop, Menu, Button } from 'zent'
+import { Pop, Button } from 'zent'
 import { ApiService } from 'src/services'
 import { IBranch } from 'src/types'
 import classes from './RepositoryCode.module.scss'
@@ -35,19 +35,13 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
   public render() {
     const { branches, branch } = this.state
     const path = this.renderPath()
-    const branchesMenu = (
-      <Menu>
-        {branches.map(branch => (
-          <Menu.MenuItem
-            key={branch.name}>
-            {branch.name}
-          </Menu.MenuItem>
-        ))}
-      </Menu>
-    )
+    const branchesMenu = this.renderBranches(branches)
     return (
       <div className={classes.head}>
-        <Pop trigger='hover' content={branchesMenu}>
+        <Pop
+          trigger='hover'
+          position='bottom-left'
+          content={branchesMenu}>
           <Button>{branch}</Button>
         </Pop>
         <div className={classes.path}>
@@ -57,14 +51,29 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
     )
   }
 
+  private renderBranches(branches: IBranch[]) {
+    const { owner, name } = this.props
+    return (
+      <div className={classes.branches}>
+        {branches.map(branch => (
+          <p className={classes.branch} key={branch.name}>
+            <a href={`/repositories/${owner}/${name}?branch=${branch.name}`}>
+              {branch.name}
+            </a>
+          </p>
+        ))}
+      </div>
+    )
+  }
+
   private renderPath() {
     const { path, owner, name } = this.props
     if (path) {
       const pathComponent = []
       const { branch } = this.state
-      const basePath = `/repositories/${owner}/${name}/${branch}`
+      const basePath = `/repositories/${owner}/${name}`
       pathComponent.push(
-        <Link key={name} to={basePath}>{name}</Link>
+        <Link key={name} to={`${basePath}?branch=${branch}`}>{name}</Link>
       )
       const pathArray = path.split('/')
       pathArray.forEach((item, index) => {
@@ -73,7 +82,7 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
           <span key={`divider-${index}`}>/</span>
         )
         pathComponent.push(
-          <Link key={`${item}-${index}`} to={`${basePath}/${suffix}`}>{item}</Link>
+          <Link key={`${item}-${index}`} to={`${basePath}/${suffix}?branch=${branch}`}>{item}</Link>
         )
       })
       return pathComponent
@@ -93,11 +102,6 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
       console.log(error)
     }
   }
-
-  // private changeBranch = (key: string) => {
-  //   this.setState({ branch: key })
-  //   this.props.onBranchChange(key)
-  // }
 
 }
 

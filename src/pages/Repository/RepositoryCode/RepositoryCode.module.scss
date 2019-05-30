@@ -26,14 +26,28 @@
 .readme {
   border-radius: 4px;
   margin-top: 20px;
-  border: 1px solid rgba(#333, 0.1);
+  border: var(--light-border);
 }
 
 .readmeTitle {
   padding: 8px 12px;
-  background-color: rgba(black, 0.2);
+  background-color: var(--primary-color);
 }
 
 .readmeContent {
   padding: 20px;
+}
+
+.branches {
+  padding: 4px 0;
+}
+
+.branch {
+  padding: 8px 12px;
+}
+
+.branch:hover {
+  color: white;
+  background-color: var(--primary-color);
+  cursor: pointer;
 }

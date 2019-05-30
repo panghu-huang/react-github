@@ -7,10 +7,10 @@ import { IStore } from 'src/types'
 import routes from './routes'
 import './global.scss'
 
-class App extends React.Component<any, IStore> {
+class GithubApp extends React.Component<any, IStore> {
 
   constructor(props: any) {
-    super(props);
+    super(props)
     this.state = {
       login: DEFAULT_LOGIN_NAME,
     }
@@ -40,4 +40,4 @@ class App extends React.Component<any, IStore> {
 
 }
 
-export default App
+export default GithubApp

@@ -22,7 +22,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
   repositories, loading, loadMore, hasLoadAll,
 }) => {
   const itemRenderer = ({
-    full_name, id, stargazers_count, description, language, updated_at,
+    full_name, id, stargazers_count, description, language, updated_at, default_branch,
   }: IRepository) => {
     const starsCls = classNames(
       'iconfont icon-star',
@@ -32,7 +32,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
     return (
       <div key={id} className={classes.repository}>
         <h3 className={classes.title}>
-          <Link to={`/repositories/${full_name}`}>
+          <Link to={`/repositories/${full_name}?branch=${default_branch}`}>
             {full_name}
           </Link>
         </h3>

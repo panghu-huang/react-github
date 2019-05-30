@@ -18,9 +18,18 @@
   margin-left: 20px;
 }
 
+.activeLink {
+  color: var(--primary-color);
+}
+
 .title {
   font-size: 20px;
   color: var(--title-color);
+}
+
+.title a:hover {
+  color: var(--title-color);
+  text-decoration: none;
 }
 
 .iconSearch {

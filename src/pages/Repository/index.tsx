@@ -14,7 +14,6 @@ interface IParams {
 type IRepositoryProps = RouteComponentProps<IParams>
 
 interface IRepositoryState {
-  activeKey: string
   repository: IRepository | null
   contents: IRepositoryContent[]
 }
@@ -30,7 +29,6 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
     super(props)
     this.initialize(props)
     this.state = {
-      activeKey: 'code',
       contents: [],
       repository: null,
     }
@@ -49,7 +47,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
           owner={this.owner}
           repository={repository}
         />
-        <Tabs onTabChange={this.handleTabChange}>
+        <Tabs>
           <Tabs.TabPane
             tabKey='code'
             title='Code'>
@@ -102,29 +100,15 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
 
   private getBranchAndFullPath(owner: string, name: string) {
     const { location } = this.props
-    const [branch] = location.pathname
+    const search = new URLSearchParams(location.search)
+    const path = location.pathname
       .replace(
-        `/repositories/${owner}/${name}/`, ''
+        `/repositories/${owner}/${name}`, ''
       )
-      .split('/')
-    if (branch) {
-      const path = location.pathname
-        .replace(
-          `/repositories/${owner}/${name}/${branch}`, ''
-        )
-      return {
-        branch,
-        path: path ? path.replace('/', '') : '',
-      }
-    }
     return {
-      branch: 'master',
-      path: '',
+      branch: search.get('branch') || 'master',
+      path: path ? path.replace('/', '') : '',
     }
-  }
-
-  private handleTabChange = (key: string) => {
-    this.setState({ activeKey: key })
   }
 
 }

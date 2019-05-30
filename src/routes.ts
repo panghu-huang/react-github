@@ -11,6 +11,7 @@ const routes: RouteProps[] = [
     component: pages.Activity,
   },
   {
+    // full path -> /repositories/:owner/:name/:branch/:path
     path: '/repositories/:owner/:name',
     exact: false,
     component: pages.Repository,
