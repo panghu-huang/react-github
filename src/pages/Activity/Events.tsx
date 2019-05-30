@@ -7,19 +7,12 @@ import { DEFAULT_PAGE_SIZE } from 'src/config'
 
 let page = 0
 
-interface IEventsProps {
-  activeKey: string
-}
-
-const Events: React.FunctionComponent<IEventsProps> = ({ activeKey }) => {
+const Events: React.FunctionComponent = () => {
   const context = React.useContext(StoreContext)
   const [loading, setLoading] = React.useState(true)
   const [events, setEvents] = React.useState<IEvent[]>([])
   const [hasLoadAll, setHasLoadAll] = React.useState(false)
-  const fetchEvents = async (isMounted?: boolean) => {
-    if (!isMounted && activeKey !== 'events') {
-      return
-    }
+  const fetchEvents = async () => {
     try {
       setLoading(true)
       const service = new ApiService<IEvent[]>('users')
@@ -41,7 +34,7 @@ const Events: React.FunctionComponent<IEventsProps> = ({ activeKey }) => {
   }
   React.useEffect(() => {
     page = 0
-    fetchEvents(true)
+    fetchEvents()
   } ,[])
   return (
     <EventList 

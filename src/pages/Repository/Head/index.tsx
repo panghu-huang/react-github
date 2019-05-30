@@ -15,15 +15,11 @@ const RepositoryHead: React.FunctionComponent<IRepositoryHeadProps> = ({
   return (
     <div className={classes.head}>
       <div className={classes.container}>
-        <span className={classes.main}>
-          <Link to={`/users/${owner}`}>{owner}</Link>
-        </span>
+        <Link className={classes.main} to={`/users/${owner}`}>{owner}</Link>
         <span className={classes.divider}>/</span>
-        <span className={classes.main}>
-          <Link to={`/repositories/${owner}/${name}`}>
-            {name}
-          </Link>
-        </span>
+        <Link className={classes.main} to={`/repositories/${owner}/${name}`}>
+          {name}
+        </Link>
       </div>
       {repository && (
         <div>
