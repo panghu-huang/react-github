@@ -4,20 +4,21 @@ import classNames from 'classnames'
 import classes from './Avatar.module.scss'
 
 interface IAvatarProps {
-  name?: string
+  repoFullName?: string
   user?: IUser
   className?: string
   size?: number
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = ({ 
-  size = 32, name, user, className,
+  size = 32, repoFullName, user, className,
 }) => {
   const cls = classNames(
     className,
     classes.avatar,
   )
-  const source = user ? user.avatar_url : name
+  const name = repoFullName ? repoFullName.split('/')[0] : ''
+  const source = user ? user.avatar_url : `https://github.com/${name}.png`
   const alt = user ? user.login : name
   return (
     <img 

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { IEvent, ICreateEventPayload } from 'src/types'
+import EventContainer from './EventContainer'
 import RepositoryLink from './RepositoryLink'
+import Wrapper from './Wrapper'
 import Avatar from '../Avatar'
 import Time from './Time'
 import Key from './Key'
@@ -12,25 +14,16 @@ interface ICreateEventProps {
 
 const CreateEvent: React.FunctionComponent<ICreateEventProps> = ({ event }) => {
   const { payload, actor, repo, created_at } = event
-  const { ref_type, ref, description } = payload as ICreateEventPayload
+  const { ref_type, ref } = payload as ICreateEventPayload
   if (ref_type === 'repository') {
     return (
-      <div>
-        <div className={classes.header}>
-          <Avatar user={actor} />
-          <p>
-            <Key>创建了</Key>
-            <RepositoryLink fullName={repo.name}/>
-          </p>
-          <Time time={created_at} />
-        </div>
-        <div>
-          <p>
-            <RepositoryLink fullName={repo.name}/>
-          </p>
-          <p>{description}</p>
-        </div>
-      </div>
+      <EventContainer
+        type='create-repo'
+        description='create a repository'
+        actor={actor}
+        time={created_at}>
+        <Wrapper fullName={repo.name}/>
+      </EventContainer>
     )
   } else if (ref_type === 'branch') {
     return (

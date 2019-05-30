@@ -9,6 +9,7 @@ import WatchEvent from './WatchEvent'
 import PublicEvent from './PublicEvent'
 import CreateEvent from './CreateEvent'
 import PullRequestEvent from './PullRequestEvent'
+import MemberEvent from './MemberEvent'
 
 interface IEventListProps {
   loading: boolean
@@ -50,8 +51,14 @@ const EventList: React.FunctionComponent<IEventListProps> = ({
         return (
           <CreateEvent key={event.id} event={event} />
         )
+      case EventType.MemberEvent:
+        return (
+          <MemberEvent key={event.id} event={event} />
+        )
       default:
-        return null
+        return (
+          <span style={{ backgroundColor: 'red' }}>{'Unknown Event: ' + event.type}</span>
+        )
     }
   }
   return (

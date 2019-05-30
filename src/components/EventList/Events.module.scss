@@ -1,15 +1,85 @@
-.header {
+//.header {
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.key {
+//  margin: 0 6px;
+//}
+//
+//.time {
+//  font-size: 12px;
+//  opacity: 0.6;
+//  margin-left: 6px;
+//  margin-top: 3px;
+//}
+//
+//.iconStars {
+//  color: #f1cc52;
+//}
+
+// event container styles
+
+.container {
+  display: flex;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.icon {
+  font-size: 14px;
+  margin: 6px 12px;
+}
+
+.container :global(.icon-star) {
+  color: #f1cc52;
+}
+
+.container :global(.icon-fork) {
+  color: #030303;
+  font-size: 16px;
+}
+
+.container :global(.icon-member) {
+  color: #aba8de;
+  font-size: 16px;
+}
+
+.container :global(.icon-delete) {
+  color: #ff2c2e;
+  font-size: 16px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actor {
   display: flex;
   align-items: center;
 }
 
-.key {
-  margin: 0 6px;
+.description {
+  margin-left: 34px;
 }
 
-.time {
-  font-size: 12px;
-  opacity: 0.6;
-  margin-left: 6px;
-  margin-top: 3px;
+.inner {
+}
+
+.repoLinkDivider {
+  margin: 0 2px;
+}
+
+// common
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
 }

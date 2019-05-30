@@ -1,11 +1,7 @@
 import * as React from 'react'
 import { IEvent, IPushEventPayload } from 'src/types'
-import RepositoryLink from './RepositoryLink'
-import LoginLink from './LoginLink'
-import Avatar from '../Avatar'
-import Time from './Time'
-import Key from './Key'
-import classes from './Events.module.scss'
+import EventContainer from './EventContainer'
+import Wrapper from './Wrapper'
 
 interface IPushEventProps {
   event: IEvent
@@ -15,19 +11,12 @@ const PushEvent: React.FunctionComponent<IPushEventProps> = ({ event }) => {
   const { actor, repo, created_at, payload } = event
   const { ref, commits } = payload as IPushEventPayload
   return (
-    <div>
-      <div className={classes.header}>
-        <Avatar user={actor} />
-        <div>
-          <LoginLink login={actor.login}/>
-          <Key>往</Key>
-          <RepositoryLink fullName={repo.name}/>
-          <Key>的</Key>
-          <strong>{ref}</strong>
-          <Key>推送了</Key>
-        </div>
-        <Time time={created_at} />
-      </div>
+    <EventContainer
+      type='pull-request'
+      description={`往 ${ref.replace('refs/heads/', '')} 分支推送了`}
+      actor={actor}
+      time={created_at}>
+      <Wrapper fullName={repo.name}/>
       <div>
         {commits.map(commit => {
           return (
@@ -37,7 +26,7 @@ const PushEvent: React.FunctionComponent<IPushEventProps> = ({ event }) => {
           )
         })}
       </div>
-    </div>
+    </EventContainer>
   )
 }
 

@@ -4,7 +4,8 @@ import { Page, Tabs } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
 import RepositoryHead from './Head'
-import RepositoryCode from './RepositoryCode'
+import RepositoryCode from './Code'
+import RepositoryIssues from './Issues'
 
 interface IParams {
   owner: string
@@ -61,7 +62,10 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
           <Tabs.TabPane
             tabKey='issues'
             title='Issues'>
-            Issues
+            <RepositoryIssues
+              owner={this.owner}
+              name={this.name}
+            />
           </Tabs.TabPane>
         </Tabs>
       </Page>
