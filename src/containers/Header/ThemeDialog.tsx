@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dialog, ColorPicker, Select } from 'zent'
+import { Dialog, ColorPicker, Select, Button, Notify } from 'zent'
 import { THEME_COLORS } from 'src/config'
 import classes from './Header.module.scss'
 
@@ -43,6 +43,10 @@ class ThemeDialog extends React.PureComponent<IThemeDialogProps, IThemeDialogSta
             onChange={this.handleColorChange}
           />
         </div>
+        <div className={classes.divider}/>
+        <Button className={classes.resetColors} onClick={this.resetColors}>
+          重置颜色
+        </Button>
       </Dialog>
     )
   }
@@ -67,6 +71,17 @@ class ThemeDialog extends React.PureComponent<IThemeDialogProps, IThemeDialogSta
     const current = evt.target.value
     const color = this.getColor(current)
     this.setState({ current, color })
+  }
+
+  private resetColors = () => {
+    THEME_COLORS.forEach(({ value }) => {
+      localStorage.removeItem(value)
+      document.body.style.removeProperty(value)
+    })
+    this.setState({
+      color: this.getColor(this.state.current),
+    })
+    Notify.success('颜色重置成功')
   }
 
   private getColor(key: string) {
