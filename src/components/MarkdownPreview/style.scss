@@ -1,0 +1,75 @@
+$radius: 4px;
+
+.markdown-preview {
+  background-color: white;
+  color: #2c3e50;
+  overflow: hidden;
+  h1 {
+    font-size: 2.2rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #eaecef;
+  }
+  h2 {
+    font-size: 1.65rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #eaecef;
+  }
+  code {
+    color: #476582;
+    border-radius: 2px;
+    font-size: 13px;
+  }
+  pre {
+    overflow-x: scroll;
+    color: #032f62;
+    padding: 12px;
+    border-radius: $radius;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 0;
+      height: 0;
+      background-color: transparent;
+    }
+    code {
+      color: #032f62;
+    }
+    .hljs-keyword,
+    .hljs-meta {
+      color: #d73a49;
+    }
+    .hljs-comment {
+      color: #999;
+    }
+    .hljs-string {
+      color: #7ec699;
+    }
+    .hljs-boolean,
+    .hljs-number {
+      color: #f08d49;
+    }
+    .hljs-params {
+      color: #6f42c1;
+    }
+    .hljs-deletion,
+    .hljs-name,
+    .hljs-section,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #e06c75;
+    }
+    .hljs-type {
+      color: #005cc5;
+    }
+    .hljs-function {
+      color: rgb(121, 182, 242);
+    }
+    .hljs-class {
+      .hljs-title {
+        color: #005cc5;
+      }
+    }
+  }
+}

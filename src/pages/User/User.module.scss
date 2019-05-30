@@ -1,0 +1,49 @@
+.tabTitleCount {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 4px;
+  color: white;
+  background-color: #b9b9b9;
+  border-radius: 4px;
+  margin-left: 4px;
+  transform: scale(0.8);
+  transform-origin: 50% 50%;
+}
+
+.infoBar {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.infoBar .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoBar .content p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.follower {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.detail span {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.detail span::before {
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.hidden {
+  display: none;
+}

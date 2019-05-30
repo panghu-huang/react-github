@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+.withMinHeight {
+  min-height: 80px;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.text {
+  margin-top: 8px;
+}

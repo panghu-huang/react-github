@@ -1,0 +1,39 @@
+.head {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.path {
+  margin-left: 16px;
+  letter-spacing: 1px;
+}
+
+.path span {
+  margin: 0 4px;
+}
+
+.content {
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.content span::before {
+  margin-right: 5px;
+}
+
+.readme {
+  border-radius: 4px;
+  margin-top: 20px;
+  border: 1px solid rgba(#333, 0.1);
+}
+
+.readmeTitle {
+  padding: 8px 12px;
+  background-color: rgba(black, 0.2);
+}
+
+.readmeContent {
+  padding: 20px;
+}

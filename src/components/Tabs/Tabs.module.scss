@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  height: 54px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: var(--light-border);
+}
+
+.content {
+  padding: 16px 30px 0;
+}

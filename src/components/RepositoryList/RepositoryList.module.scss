@@ -1,0 +1,45 @@
+.repository {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: var(--light-border);
+}
+
+.title {
+  font-size: 16px;
+  margin: 0 0 8px;
+  color: var(--title-color);
+}
+
+.other {
+  font-size: 12px;
+}
+
+.stars {
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-color);
+  margin-right: 20px;
+}
+
+.stars::before {
+  margin-right: 4px;
+}
+
+.language {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.languageColor {
+ display: inline-block;
+ width: 12px;
+ height: 12px;
+ border-radius: 50%; 
+ margin-right: 4px;
+}
+
+.hidden {
+  display: none;
+}
