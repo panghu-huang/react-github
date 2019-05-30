@@ -39,6 +39,7 @@ const Popular: React.FunctionComponent = () => {
         loading={loading}
         repositories={repositories}
         loadMore={fetchRepositories}
+        hasLoadAll={false}
       />
     </Page>
   )

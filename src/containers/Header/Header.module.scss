@@ -6,10 +6,15 @@
   padding: 0 20px;
   background-color: var(--bg-color);
   color: var(--text-color);
-  border-bottom: var(--light-border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav {
+  display: flex;
+  align-items: center;
+}
+
+.operateBar {
   display: flex;
   align-items: center;
 }
@@ -35,4 +40,22 @@
 .iconSearch {
   padding: 0 8px;
   color: var(--border-color);
+}
+
+.iconTheme {
+  margin-left: 20px;
+  color: var(--primary-color);
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+.iconTheme:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.themeDialog {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
 }

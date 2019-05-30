@@ -17,7 +17,7 @@ list, loading, renderItem, loadMore, hasLoadAll,
     <Container>
       {list.map(renderItem)}
       <Loading loading={loading}/>
-      {!loading && !hasLoadAll && (
+      {false === loading && false === hasLoadAll && (
         <p onClick={loadMore} style={{padding: '20px 0', textAlign: 'center', margin: 0}}>
           <span>load more</span>
         </p>

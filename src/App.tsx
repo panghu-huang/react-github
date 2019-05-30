@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { StoreContext, actions, storer } from 'src/store'
 import { Header } from 'src/containers'
-import { DEFAULT_LOGIN_NAME } from 'src/config'
+import { DEFAULT_LOGIN_NAME, THEME_COLORS } from 'src/config'
 import { IStore } from 'src/types'
 import routes from './routes'
 import './global.scss'
@@ -15,6 +15,10 @@ class GithubApp extends React.Component<any, IStore> {
       login: DEFAULT_LOGIN_NAME,
     }
     storer.bindSetStore(this.setState as any)
+  }
+
+  public componentDidMount() {
+    this.getThemeColors()
   }
 
   public render() {
@@ -36,6 +40,15 @@ class GithubApp extends React.Component<any, IStore> {
         </StoreContext.Provider>
       </Router>
     )
+  }
+
+  private getThemeColors() {
+    THEME_COLORS.forEach(({ value }) => {
+      const color = localStorage.getItem(value)
+      if (color) {
+        document.body.style.setProperty(value, color)
+      }
+    })
   }
 
 }
