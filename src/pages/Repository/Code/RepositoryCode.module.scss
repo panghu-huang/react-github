@@ -26,7 +26,7 @@
 .readme {
   border-radius: 4px;
   margin-top: 20px;
-  border: var(--light-border);
+  border: 1px solid var(--border-color);
 }
 
 .readmeTitle {
@@ -42,7 +42,10 @@
   padding: 4px 0;
 }
 
-.branch {
+.branch a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   padding: 8px 12px;
 }
 
@@ -50,4 +53,9 @@
   color: white;
   background-color: var(--primary-color);
   cursor: pointer;
+}
+
+.branch a:hover {
+  color: white;
+  text-decoration: none;
 }

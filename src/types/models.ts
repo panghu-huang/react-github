@@ -45,9 +45,15 @@ export interface IEvent {
   type: EventType
   actor: IUser
   repo: IRepository
+  org?: IUser
   public: boolean
-  payload: IWatchEventPayload | IForkEventPayload | ICreateEventPayload | IDeleteEventPayload | IPullRequestEventPayload | IPushEventPayload
+  payload: IWatchEventPayload | IForkEventPayload | ICreateEventPayload | IDeleteEventPayload | IPullRequestEventPayload | IPushEventPayload | IMemberEventPayload
   created_at: string
+}
+
+export interface IMemberEventPayload {
+  action: 'added'
+  member: IUser
 }
 
 export interface IWatchEventPayload {

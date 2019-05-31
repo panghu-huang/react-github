@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Container from '../Container'
 import Loading from '../Loading'
+import classNames from 'classnames'
+import classes from './List.module.scss'
 
 interface IListProps {
   list: any[]
@@ -17,13 +19,13 @@ list, loading, renderItem, loadMore, hasLoadAll,
     <Container>
       {list.map(renderItem)}
       <Loading loading={loading}/>
-      {!loading && !hasLoadAll && (
-        <p onClick={loadMore} style={{padding: '20px 0', textAlign: 'center', margin: 0}}>
+      {false === loading && false === hasLoadAll && (
+        <p onClick={loadMore} className={classes.foot}>
           <span>load more</span>
         </p>
       )}
       {hasLoadAll && (
-        <p style={{ padding: '20px 0', textAlign: 'center', margin: 0 }}>
+        <p className={classNames(classes.foot, classes.loadAll)}>
           <span>已加载全部数据</span>
         </p>
       )}

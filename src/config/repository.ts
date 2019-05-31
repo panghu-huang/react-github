@@ -11,6 +11,7 @@ export const enum EventType {
   PushEvent = 'PushEvent',
   PullRequestEvent = 'PullRequestEvent',
   CreateEvent = 'CreateEvent',
+  MemberEvent = 'MemberEvent',
 }
 
 export const enum ContentType {

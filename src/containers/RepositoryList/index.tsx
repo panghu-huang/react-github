@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { List, Avatar } from 'src/components'
 import { TimeUtils } from 'src/utils'
 import { IRepository } from 'src/types'
 import classNames from 'classnames'
-import List from '../List'
 import Language from './Language'
 import classes from './RepositoryList.module.scss'
 
@@ -32,11 +32,12 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
     return (
       <div key={id} className={classes.repository}>
         <h3 className={classes.title}>
+          <Avatar repoFullName={full_name}/>
           <Link to={`/repositories/${full_name}?branch=${default_branch}`}>
             {full_name}
           </Link>
         </h3>
-        <p>{description}</p>
+        <p className={classes.description}>{description}</p>
         <div className={classes.other}>
           <Language language={language} />
           <span className={starsCls}>

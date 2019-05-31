@@ -1,13 +1,18 @@
 .repository {
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: var(--light-border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .title {
+  display: flex;
+  align-items: center;
   font-size: 16px;
-  margin: 0 0 8px;
   color: var(--title-color);
+}
+
+.description {
+  margin: 16px 0;
 }
 
 .other {
