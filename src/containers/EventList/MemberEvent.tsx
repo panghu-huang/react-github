@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { IEvent, IMemberEventPayload } from 'src/types/index'
+import { Avatar } from 'src/components'
+import { IEvent, IMemberEventPayload } from 'src/types'
 import EventContainer from './EventContainer'
 import Wrapper from './Wrapper'
-import Avatar from '../../components/Avatar/index'
 import LoginLink from './LoginLink'
 import classes from './Events.module.scss'
 

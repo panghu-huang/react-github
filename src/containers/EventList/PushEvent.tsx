@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { IEvent, IPushEventPayload } from 'src/types/index'
+import { Avatar } from 'src/components'
+import { IEvent, IPushEventPayload } from 'src/types'
 import EventContainer from './EventContainer'
-import Avatar from '../../components/Avatar/index'
 import classes from './Events.module.scss'
 
 interface IPushEventProps {

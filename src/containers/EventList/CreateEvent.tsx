@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IEvent, ICreateEventPayload } from 'src/types/index'
+import { IEvent, ICreateEventPayload } from 'src/types'
 import EventContainer from './EventContainer'
 import Wrapper from './Wrapper'
 
