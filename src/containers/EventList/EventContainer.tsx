@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { TimeUtils } from 'src/utils'
-import { IUser } from 'src/types'
-import Avatar from '../Avatar'
+import { TimeUtils } from 'src/utils/index'
+import { IUser } from 'src/types/index'
+import Avatar from '../../components/Avatar/index'
 import LoginLink from './LoginLink'
 import classNames from 'classnames'
 import classes from './Events.module.scss'
@@ -25,7 +25,7 @@ const EventContainer: React.FunctionComponent<IEventContainerProps> = ({
       <div className={classes.mainContent}>
         <div className={classes.head}>
           <p className={classes.actor}>
-            <Avatar user={actor} size={24}/>
+            <Avatar user={actor}/>
             <LoginLink login={actor.login}/>
           </p>
           <span className={classes.time}>

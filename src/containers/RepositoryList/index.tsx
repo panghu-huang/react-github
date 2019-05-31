@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { TimeUtils } from 'src/utils'
-import { IRepository } from 'src/types'
+import { TimeUtils } from 'src/utils/index'
+import { IRepository } from 'src/types/index'
 import classNames from 'classnames'
-import List from '../List'
+import List from '../../components/List/index'
 import Language from './Language'
 import classes from './RepositoryList.module.scss'
 
@@ -36,7 +36,7 @@ const RepositoryList: React.FunctionComponent<IRepositoryListProps> = ({
             {full_name}
           </Link>
         </h3>
-        <p>{description}</p>
+        <p className={classes.description}>{description}</p>
         <div className={classes.other}>
           <Language language={language} />
           <span className={starsCls}>

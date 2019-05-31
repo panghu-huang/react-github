@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { EventList } from 'src/components'
+import { EventList } from 'src/containers'
 import { StoreContext } from 'src/store'
 import { ApiService } from 'src/services'
 import { DEFAULT_PAGE_SIZE } from 'src/config'

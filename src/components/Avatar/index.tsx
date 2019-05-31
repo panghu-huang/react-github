@@ -11,7 +11,7 @@ interface IAvatarProps {
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = ({ 
-  size = 32, repoFullName, user, className,
+  size = 24, repoFullName, user, className,
 }) => {
   const cls = classNames(
     className,

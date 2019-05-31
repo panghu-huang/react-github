@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { EventList } from 'src/components'
+import { EventList } from 'src/containers'
 import { StoreContext } from 'src/store'
 import { ApiService } from 'src/services'
 import { IEvent } from 'src/types'

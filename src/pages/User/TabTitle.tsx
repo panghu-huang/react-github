@@ -15,7 +15,7 @@ const TabTitle: React.FunctionComponent<ITabTitleProps> = ({
   return (
     <span>
       {title}
-      {count && <span className={classes.tabTitleCount}>{formatted}</span>}
+      {formatted && <span className={classes.tabTitleCount}>{formatted}</span>}
     </span>
   )
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { languageColors } from 'src/config'
+import { languageColors } from 'src/config/index'
 import classes from './RepositoryList.module.scss'
 
 interface ILanguageProps {

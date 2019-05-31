@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { ApiService } from 'src/services'
-import { Page, RepositoryList } from 'src/components'
+import { RepositoryList } from 'src/containers'
+import { Page } from 'src/components'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
 import { IRepository } from 'src/types'
 

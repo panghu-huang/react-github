@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Avatar from '../Avatar'
+import Avatar from '../../components/Avatar/index'
 import RepositoryLink from './RepositoryLink'
 import classes from './Events.module.scss'
 
