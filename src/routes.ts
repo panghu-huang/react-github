@@ -20,6 +20,10 @@ const routes: RouteProps[] = [
     path: '/users/:name',
     component: pages.User,
   },
+  {
+    path: '/oauth',
+    component: pages.OAuth,
+  },
 ]
 
 export default routes

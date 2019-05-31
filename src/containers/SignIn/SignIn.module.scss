@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+}
+
+.container img {
+  width: 60px;
+  height: 60px;
+}
+
+.container p {
+  background-color: gray;
+  text-align: center;
+}
