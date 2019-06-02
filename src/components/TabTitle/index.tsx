@@ -1,5 +1,5 @@
 import * as React from 'react'
-import classes from './User.module.scss'
+import classes from './TabTitle.module.scss'
 
 interface ITabTitleProps {
   title: string
@@ -15,7 +15,7 @@ const TabTitle: React.FunctionComponent<ITabTitleProps> = ({
   return (
     <span>
       {title}
-      {formatted && <span className={classes.tabTitleCount}>{formatted}</span>}
+      {formatted && <span className={classes.title}>{formatted}</span>}
     </span>
   )
 }

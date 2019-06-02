@@ -1,4 +1,4 @@
-import { EventType } from 'src/config'
+import { EventType, UserType } from 'src/config'
 
 export interface IUser {
   id: number
@@ -13,6 +13,7 @@ export interface IUser {
   public_gists: number
   followers: number
   following: number
+  type: UserType
 }
 
 export interface IRepository {

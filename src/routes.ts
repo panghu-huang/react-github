@@ -21,6 +21,10 @@ const routes: RouteProps[] = [
     component: pages.User,
   },
   {
+    path: '/orgs/:name',
+    component: pages.Organization,
+  },
+  {
     path: '/oauth',
     component: pages.OAuth,
   },

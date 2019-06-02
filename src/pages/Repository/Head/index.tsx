@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { IRepository } from 'src/types'
+import { UserType } from 'src/config'
 import classes from './Head.module.scss'
 
 interface IRepositoryHeadProps {
@@ -12,10 +13,12 @@ interface IRepositoryHeadProps {
 const RepositoryHead: React.FunctionComponent<IRepositoryHeadProps> = ({
   owner, name, repository,
 }) => {
+  const type = repository ? repository.owner.type : UserType.User
+  const homePage = `/${type === UserType.User ? 'users' : 'orgs'}/${owner}`
   return (
     <div className={classes.head}>
       <div className={classes.container}>
-        <Link className={classes.main} to={`/users/${owner}`}>{owner}</Link>
+        <Link className={classes.main} to={homePage}>{owner}</Link>
         <span className={classes.divider}>/</span>
         <Link className={classes.main} to={`/repositories/${owner}/${name}`}>
           {name}

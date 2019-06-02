@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Avatar } from 'src/components'
 import { IUser } from 'src/types'
 import classNames from 'classnames'
-import classes from './User.module.scss'
+import classes from './UserInfoBar.module.scss'
 
 interface IInfoBar {
   user: IUser
@@ -16,7 +16,7 @@ const InfoBar: React.FunctionComponent<IInfoBar> = ({
   }
   return (
     <div className={classes.infoBar}>
-      <Avatar user={user} size={64} />
+      <Avatar user={user} size={64}/>
       <div className={classes.content}>
         <p>
           <strong>

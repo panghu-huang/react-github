@@ -1,0 +1,29 @@
+.infoBar {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.infoBar .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoBar .content p {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.detail span {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.detail span::before {
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.hidden {
+  display: none;
+}
