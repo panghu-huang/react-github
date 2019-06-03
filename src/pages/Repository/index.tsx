@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import { Page, Tabs } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
+import isEqual from 'lodash/isEqual'
 import RepositoryHead from './Head'
 import RepositoryCode from './Code'
 import RepositoryIssues from './Issues'
@@ -73,7 +74,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
   }
 
   public componentDidUpdate(prevProps: IRepositoryProps) {
-    if (this.props.match.params !== prevProps.match.params) {
+    if (!isEqual(this.props.match.params, prevProps.match.params)) {
       this.initialize(this.props)
       this.fetchRepository()
     }

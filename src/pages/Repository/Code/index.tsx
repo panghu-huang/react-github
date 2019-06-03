@@ -3,6 +3,7 @@ import { ApiService } from 'src/services'
 import { Loading } from 'src/components'
 import { IRepositoryContent } from 'src/types'
 import { ContentType } from 'src/config'
+import isEqual from 'lodash/isEqual'
 import RepositoryCodeHead from './Head'
 import RepositoryContents from './Contents'
 import RepositoryContent from './Content'
@@ -66,7 +67,7 @@ class RepositoryCode extends React.Component<IRepositoryCodeProps, IRepositoryCo
   }
 
   public componentDidUpdate(prevProps: IRepositoryCodeProps) {
-    if (prevProps !== this.props) {
+    if (!isEqual(prevProps, this.props)) {
       this.fetchContents()
       this.fetchRepositoryReadme()
     }
