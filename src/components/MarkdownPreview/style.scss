@@ -4,15 +4,21 @@ $radius: 4px;
   background-color: white;
   color: #2c3e50;
   overflow: hidden;
+  line-height: 170%;
   h1 {
-    font-size: 2.2rem;
-    padding-bottom: 0.3rem;
+    font-size: 36px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #eaecef;
+    margin: 16px 0;
   }
   h2 {
-    font-size: 1.65rem;
-    padding-bottom: 0.3rem;
+    font-size: 28px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #eaecef;
+    margin: 16px 0;
+  }
+  p {
+    margin: 12px 0;
   }
   code {
     color: #476582;

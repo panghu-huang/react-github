@@ -4,13 +4,13 @@ import { RepositoryList } from 'src/containers'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
 import { IRepository } from 'src/types'
 
-interface IUserRepositoryListProps {
+interface IOrgRepositoryListProps {
   name: string
 }
 
 let page = 0
 
-const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
+const OrgRepositoryList: React.FunctionComponent<IOrgRepositoryListProps> = ({
   name,
 }) => {
   const [loading, setLoading] = React.useState(true)
@@ -19,7 +19,7 @@ const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
   const fetchRepositories = async () => {
     try {
       setLoading(true)
-      const service = new ApiService<IRepository[]>('users')
+      const service = new ApiService<IRepository[]>('orgs')
       const results = await service.get({
         path: `${name}/repos`,
         data: {
@@ -51,4 +51,4 @@ const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
   )
 }
 
-export default UserRepositoryList
+export default OrgRepositoryList

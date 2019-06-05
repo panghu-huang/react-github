@@ -1,4 +1,7 @@
 import { stringify as queryStringify } from 'querystring'
+import QueueService from './QueueService'
+
+const queue = new QueueService(500)
 
 const enum Method {
   GET = 'GET',
@@ -64,6 +67,7 @@ class ApiService<T = any> {
   }
 
   public async fetch(opts: IFetchOptions): Promise<T> {
+    await queue.requestIdle()
     const url = this.getUrl(opts)
     const options = this.getOptions(opts, url)
     const response = await fetch(url, options)

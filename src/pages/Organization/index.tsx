@@ -4,23 +4,23 @@ import { ApiService } from 'src/services'
 import { UserInfoBar } from 'src/containers'
 import { Page, Loading, Tabs, TabTitle } from 'src/components'
 import { IUser } from 'src/types'
-import UserFollowers, { FollowType } from './Followers'
-import UserRepositoryList from './RepositoryList'
+import OrgRepositoryList from './RepositoryList'
+import OrgMembers from './Members'
 
 interface IParams {
   name: string
 }
 
-type IUserProps = RouteComponentProps<IParams>
+type IOrganizationProps = RouteComponentProps<IParams>
 
-const User: React.FunctionComponent<IUserProps> = ({
+const Organization: React.FunctionComponent<IOrganizationProps> = ({
   match,
 }) => {
   const { name } = match.params
   const [user, setUser] = React.useState<IUser | null>(null)
   const fetchUser = async () => {
     try {
-      const service = new ApiService<IUser>('users')
+      const service = new ApiService<IUser>('orgs')
       const user = await service.get({
         path: name,
       })
@@ -40,35 +40,22 @@ const User: React.FunctionComponent<IUserProps> = ({
       <UserInfoBar user={user}/>
       <Tabs>
         <Tabs.TabPane
-          tabKey='repositories' 
+          tabKey='repositories'
           title={
             <TabTitle title='Repositories' count={user.public_repos}/>
           }>
-          <UserRepositoryList name={name} />
+          <OrgRepositoryList name={name}/>
         </Tabs.TabPane>
         <Tabs.TabPane
-          tabKey={FollowType.Followers}
+          tabKey='members'
           title={
-            <TabTitle title='Followers' count={user.followers}/>
+            <TabTitle title='Members'/>
           }>
-          <UserFollowers
-            name={name}
-            type={FollowType.Followers}
-          />
-        </Tabs.TabPane>
-        <Tabs.TabPane
-          tabKey={FollowType.Following}
-          title={
-            <TabTitle title='Following' count={user.following}/>
-          }>
-          <UserFollowers
-            name={name}
-            type={FollowType.Following}
-          />
+          <OrgMembers name={name}/>
         </Tabs.TabPane>
       </Tabs>
     </Page>
   )
 }
 
-export default User
+export default Organization

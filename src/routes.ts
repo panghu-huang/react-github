@@ -11,7 +11,7 @@ const routes: RouteProps[] = [
     component: pages.Activity,
   },
   {
-    // full path -> /repositories/:owner/:name/:branch/:path
+    // full path -> /repositories/:owner/:name/:path?branch=:branch
     path: '/repositories/:owner/:name',
     exact: false,
     component: pages.Repository,
@@ -19,6 +19,10 @@ const routes: RouteProps[] = [
   {
     path: '/users/:name',
     component: pages.User,
+  },
+  {
+    path: '/orgs/:name',
+    component: pages.Organization,
   },
 ]
 

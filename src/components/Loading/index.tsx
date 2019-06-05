@@ -21,6 +21,7 @@ const Loading: React.FunctionComponent<ILoadingProps> = ({
   return (
     <div className={containerCls}>
       <div className={loadingCls}>
+        <span className='iconfont icon-spinner'/>
         <span className={classes.text}>Loading...</span>
       </div>
       <div>{children}</div>
