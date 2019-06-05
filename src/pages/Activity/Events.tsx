@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Notify } from 'zent'
 import { EventList } from 'src/containers'
 import { StoreContext } from 'src/store'
 import { ApiService } from 'src/services'
@@ -27,7 +28,7 @@ const Events: React.FunctionComponent = () => {
       }
       setEvents(events.concat(evts))
     } catch (e) {
-      console.log(e)
+      Notify.error(e.message)
     } finally {
       setLoading(false)
     }

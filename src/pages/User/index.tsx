@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import { Notify } from 'zent'
 import { ApiService } from 'src/services'
 import { UserInfoBar } from 'src/containers'
 import { Page, Loading, Tabs, TabTitle } from 'src/components'
@@ -26,7 +27,7 @@ const User: React.FunctionComponent<IUserProps> = ({
       })
       setUser(user)
     } catch (error) {
-      console.log(error)
+      Notify.error(error.message)
     }
   }
   React.useEffect(() => {
