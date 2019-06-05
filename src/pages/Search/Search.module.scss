@@ -23,3 +23,24 @@
 .empty__content :global(.icon-search) {
   padding: 8px;
 }
+
+.searchTargetContainer {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.searchTargetContainer p {
+  margin-left: 20px;
+}
+
+.target {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.target:hover {
+  background-color: var(--primary-color);
+  color: white;
+}

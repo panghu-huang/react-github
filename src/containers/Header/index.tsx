@@ -8,7 +8,9 @@ import classes from './Header.module.scss'
 
 const Header: React.FunctionComponent = () => {
   const [dialogVisible, setDialogVisible] = React.useState(false)
-  const [keyword, setKeyword] = React.useState('')
+  const [keyword, setKeyword] = React.useState(
+    new URLSearchParams(location.search).get('keyword') || ''
+  )
   const iconSearchCls = classNames(
     'iconfont', 'icon-search', classes.iconSearch,
   )
