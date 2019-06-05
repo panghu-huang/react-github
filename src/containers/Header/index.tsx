@@ -1,20 +1,31 @@
 import * as React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Input } from 'src/components'
+import { Input } from 'zent'
+import { actions } from 'src/store'
 import ThemeDialog from './ThemeDialog'
 import classNames from 'classnames'
 import classes from './Header.module.scss'
 
 const Header: React.FunctionComponent = () => {
   const [dialogVisible, setDialogVisible] = React.useState(false)
+  const [keyword, setKeyword] = React.useState('')
   const iconSearchCls = classNames(
     'iconfont', 'icon-search', classes.iconSearch,
   )
   const iconThemeCls = classNames(
     'iconfont', 'icon-theme', classes.iconTheme,
   )
-  const toggleThemeDialogVisible = () => {
-    setDialogVisible(!dialogVisible)
+  const toggleThemeDialogVisible = () => setDialogVisible(!dialogVisible)
+  const handleKeywordChange = (evt: React.ChangeEvent) => {
+    setKeyword((evt.target as HTMLInputElement).value)
+  }
+  const goToSearch = () => {
+    actions.history.push(`/search?keyword=${keyword}`)
+  }
+  const handleKeyDown = (evt: React.KeyboardEvent) => {
+    if (evt.keyCode === 13) {
+      goToSearch()
+    }
   }
   return (
     <header className={classes.header}>
@@ -32,8 +43,14 @@ const Header: React.FunctionComponent = () => {
       </nav>
       <div className={classes.operateBar}>
         <Input
-          suffix={(
-            <span className={iconSearchCls}/>
+          value={keyword}
+          onChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
+          addonAfter={(
+            <span
+              className={iconSearchCls}
+              onClick={goToSearch}
+            />
           )}
         />
         <span

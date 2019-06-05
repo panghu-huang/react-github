@@ -1,0 +1,25 @@
+.empty {
+  margin: 100px auto;
+  width: 500px;
+}
+
+.empty__content {
+  display: flex;
+  align-items: center;
+}
+
+.empty__title {
+  font-size: 28px;
+  color: var(--title-color);
+  margin-bottom: 20px;
+}
+
+.empty__content :global(.zent-input-wrapper) {
+  height: 32px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.empty__content :global(.icon-search) {
+  padding: 8px;
+}

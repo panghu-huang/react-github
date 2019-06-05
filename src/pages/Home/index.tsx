@@ -35,7 +35,7 @@ const Popular: React.FunctionComponent = () => {
     fetchRepositories()
   }, [])
   return (
-    <Page title='popular JavaScript repositories'>
+    <Page title='Popular JavaScript Repositories'>
       <RepositoryList
         loading={loading}
         repositories={repositories}
