@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import { Location } from 'history'
 import { Page, Tabs } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
@@ -74,7 +75,14 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
   }
 
   public componentDidUpdate(prevProps: IRepositoryProps) {
-    if (!isEqual(this.props.match.params, prevProps.match.params)) {
+    const equal = isEqual(this.props.match.params, prevProps.match.params)
+    const { path: prevPath } = this.getBranchAndFullPath(
+      prevProps.location, prevProps.match.params
+    )
+    const { path } = this.getBranchAndFullPath(
+      this.props.location, this.props.match.params
+    )
+    if (!equal || prevPath !== path) {
       this.initialize(this.props)
       this.fetchRepository()
     }
@@ -93,18 +101,16 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
   }
 
   private initialize(props: IRepositoryProps) {
-    const { owner, name  } = props.match.params
     const { branch, path } = this.getBranchAndFullPath(
-      owner, name,
+      props.location, props.match.params,
     )
-    this.owner = owner
-    this.name = name
+    this.owner = props.match.params.owner
+    this.name = props.match.params.name
     this.branch = branch
     this.path = path
   }
 
-  private getBranchAndFullPath(owner: string, name: string) {
-    const { location } = this.props
+  private getBranchAndFullPath(location: Location, { owner, name }: {owner: string, name: string}) {
     const search = new URLSearchParams(location.search)
     const path = location.pathname
       .replace(

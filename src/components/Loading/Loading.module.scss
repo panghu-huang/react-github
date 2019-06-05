@@ -19,10 +19,26 @@
   padding: 50px 0;
 }
 
+.loading :global(.icon-spinner) {
+  font-size: 18px;
+  color: var(--primary-color);
+  transform-origin: 50% 50%;
+  animation: spinner-animation 1s infinite linear;
+}
+
 .loading.hidden {
   display: none;
 }
 
 .text {
   margin-top: 8px;
+}
+
+@keyframes spinner-animation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
