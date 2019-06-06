@@ -39,6 +39,7 @@ export interface IRepositoryContent {
   path: string
   content: string
   url: string
+  download_url: string
 }
 
 export interface IEvent {

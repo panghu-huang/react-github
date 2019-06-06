@@ -2,13 +2,14 @@ import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Location } from 'history'
 import { Notify } from 'zent'
-import { ApiService } from 'src/services'
-import { actions } from 'src/store'
 import { RepositoryList, UserList } from 'src/containers'
 import { Page } from 'src/components'
+import { ApiService } from 'src/services'
+import { actions } from 'src/store'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
 import { IRepository, ISearchResults, IUser } from 'src/types'
 import SearchType, { SearchTargetType } from './SearchTarget'
+import SortOptions from './SortOptions'
 import Empty from './Empty'
 import classes from './Search.module.scss'
 
@@ -17,6 +18,7 @@ interface ISearchState {
   loading: boolean
   hasLoadAll: boolean
   results: ISearchResults<IRepository | IUser>
+  searchTarget: SearchTargetType
 }
 
 const initialResults = {
@@ -28,15 +30,14 @@ const initialResults = {
 class Search extends React.Component<RouteComponentProps, ISearchState> {
 
   private page: number = 0
-  private searchTarget: SearchTargetType
 
   constructor(props: RouteComponentProps) {
     super(props)
-    this.searchTarget = this.getInitialSearchTarget()
     this.state = {
       keyword: this.getKeywordFromUrl(props.location),
       loading: false,
       hasLoadAll: false,
+      searchTarget: this.getInitialSearchTarget(),
       results: initialResults,
     }
   }
@@ -46,7 +47,7 @@ class Search extends React.Component<RouteComponentProps, ISearchState> {
   }
 
   public render() {
-    const { keyword, results } = this.state
+    const { keyword, results, searchTarget } = this.state
     if (!keyword) {
       return <Empty onSearch={this.handleKeywordChange}/>
     }
@@ -54,10 +55,15 @@ class Search extends React.Component<RouteComponentProps, ISearchState> {
       <Page title={`Search "${keyword}"`}>
         <div className={classes.searchTargetContainer}>
           <SearchType
-            initialTarget={this.searchTarget}
+            target={searchTarget}
             onChange={this.handleSearchTargetChange}
           />
           <p><strong>{results.total_count}</strong> 条相关记录</p>
+          <span style={{ flex: 1 }}/>
+          <SortOptions
+            searchTarget={searchTarget}
+            onChange={this.handleSortChange}
+          />
         </div>
         {this.renderMainContent()}
       </Page>
@@ -68,17 +74,16 @@ class Search extends React.Component<RouteComponentProps, ISearchState> {
     const keyword = this.getKeywordFromUrl(this.props.location)
     if (this.state.keyword !== keyword) {
       this.page = 0
-      this.setState({
+      this.reset({
+        searchTarget: SearchTargetType.Repositories,
         keyword,
-        hasLoadAll: false,
-        results: initialResults,
-      }, this.search)
+      })
     }
   }
 
   private renderMainContent = () => {
-    const { loading, results, hasLoadAll } = this.state
-    switch (this.searchTarget) {
+    const { loading, results, hasLoadAll, searchTarget } = this.state
+    switch (searchTarget) {
       case SearchTargetType.Repositories:
         return (
           <RepositoryList
@@ -104,14 +109,14 @@ class Search extends React.Component<RouteComponentProps, ISearchState> {
 
   private search = async () => {
     try {
-      const { keyword, hasLoadAll } = this.state
+      const { keyword, hasLoadAll, searchTarget } = this.state
       if (!keyword || hasLoadAll) {
         return
       }
       this.setState({ loading: true })
       const service = new ApiService('search')
       const results = await service.get({
-        path: this.searchTarget,
+        path: searchTarget,
         data: {
           q: keyword,
           page: ++this.page,
@@ -148,23 +153,30 @@ class Search extends React.Component<RouteComponentProps, ISearchState> {
       `/search?keyword=${this.state.keyword}&target=${target}`
     )
     this.page = 0
-    this.searchTarget = target
-    this.setState({
-      results: initialResults,
-      hasLoadAll: false
-    }, this.search)
+    this.reset({ searchTarget: SearchTargetType.Repositories })
   }
 
   private handleKeywordChange = (keyword: string) => {
     actions.history.push(
-      `/search?keyword=${keyword}&target=${this.searchTarget}`
+      `/search?keyword=${keyword}&target=${this.state.searchTarget}`
     )
     this.page = 0
-    this.setState({
-      keyword,
-      results: initialResults,
-      hasLoadAll: false
+    this.reset({ keyword })
+  }
+
+  private reset(partialState: Partial<ISearchState>) {
+    this.setState(({ keyword, searchTarget }) => {
+      return {
+        keyword: partialState.keyword || keyword,
+        searchTarget: partialState.searchTarget || searchTarget,
+        results: initialResults,
+        hasLoadAll: false,
+      }
     }, this.search)
+  }
+
+  private handleSortChange() {
+    // empty
   }
 
   private getKeywordFromUrl(location: Location) {

@@ -10,15 +10,13 @@ export enum SearchTargetType {
 }
 
 export interface ITargetProps {
-  initialTarget: SearchTargetType
+  target: SearchTargetType
   onChange: (target: SearchTargetType) => void
 }
 
 const SearchTarget: React.FunctionComponent<ITargetProps> = props => {
-  const [target, setTarget] = React.useState(props.initialTarget)
   const generateHandler = (target: SearchTargetType) => {
     return () => {
-      setTarget(target)
       props.onChange(target)
     }
   }
@@ -26,7 +24,7 @@ const SearchTarget: React.FunctionComponent<ITargetProps> = props => {
     return (
       <p
         key={target}
-        className={classes.target}
+        className={classes.select}
         onClick={generateHandler(target)}>
         {target}
       </p>
@@ -37,7 +35,7 @@ const SearchTarget: React.FunctionComponent<ITargetProps> = props => {
       trigger='hover'
       position='bottom-left'
       content={menu}>
-      <Button>{target}</Button>
+      <Button>{props.target}</Button>
     </Pop>
   )
 }

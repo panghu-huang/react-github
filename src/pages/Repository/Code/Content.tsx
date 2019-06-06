@@ -9,9 +9,15 @@ interface IRepositoryContentProps {
 const RepositoryContent: React.FunctionComponent<IRepositoryContentProps> = ({
   content,
 }) => {
+  const lowerCaseName = content.name.toLowerCase()
+  if (/\.(png|jpg|jpeg)$/.test(lowerCaseName)) {
+    return (
+      <img src={content.download_url}/>
+    )
+  }
   const str = content.content.split('\n').map(item => atob(item)).join('')
-  const markdown = content.name.toLowerCase().endsWith('.md')
-    ? str 
+  const markdown = lowerCaseName.endsWith('.md')
+    ? str
     : '```\n' + str + '\n```'
   return (
     <MarkdownPreview markdown={markdown}/>
