@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Notify } from 'zent'
 import { ApiService } from 'src/services'
 import { RepositoryList } from 'src/containers'
 import { Page } from 'src/components'
@@ -25,7 +26,7 @@ const Popular: React.FunctionComponent = () => {
       })
       setRepositories(repositories.concat(items))
     } catch (e) {
-      console.log(e)
+      Notify.error(e.message)
     } finally {
       setLoading(false)
     }
@@ -35,7 +36,7 @@ const Popular: React.FunctionComponent = () => {
     fetchRepositories()
   }, [])
   return (
-    <Page title='popular JavaScript repositories'>
+    <Page title='Popular JavaScript Repositories'>
       <RepositoryList
         loading={loading}
         repositories={repositories}

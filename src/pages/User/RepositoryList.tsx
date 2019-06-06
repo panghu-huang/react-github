@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Notify } from 'zent'
 import { ApiService } from 'src/services'
 import { RepositoryList } from 'src/containers'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
@@ -32,7 +33,7 @@ const UserRepositoryList: React.FunctionComponent<IUserRepositoryListProps> = ({
         setHasLoadAll(true)
       }
     } catch (e) {
-      console.log(e)
+      Notify.error(e.message)
     } finally {
       setLoading(false)
     }

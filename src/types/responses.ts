@@ -1,7 +1,7 @@
 import { IRepository } from './models'
 
 export interface ISearchResults<T> {
-  total: number
+  total_count: number
   items: T[]
   incomplete_results: boolean
 }

@@ -1,0 +1,57 @@
+.empty {
+  margin: 100px auto;
+  width: 500px;
+}
+
+.empty__content {
+  display: flex;
+  align-items: center;
+}
+
+.empty__title {
+  font-size: 28px;
+  color: var(--title-color);
+  margin-bottom: 20px;
+}
+
+.empty__content :global(.zent-input-wrapper) {
+  height: 32px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.empty__content :global(.icon-search) {
+  padding: 8px;
+}
+
+.filterBar {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.filterBar p {
+  margin-left: 20px;
+}
+
+.filterBar p strong {
+  margin-right: 8px;
+}
+
+.select {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.select:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.sortOrder {
+  width: 100px !important;
+}
+
+.sortOptions {
+  width: 120px !important;
+}

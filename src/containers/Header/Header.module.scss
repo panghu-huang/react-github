@@ -38,8 +38,13 @@
 }
 
 .iconSearch {
-  padding: 0 8px;
-  color: var(--border-color);
+  padding: 0 6px;
+  color: var(--text-color);
+}
+
+.iconSearch:hover {
+  color: var(--title-color);
+  font-weight: 900;
 }
 
 .iconTheme {

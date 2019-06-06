@@ -1,9 +1,9 @@
 import * as React from 'react'
+import { Notify } from 'zent'
 import { ApiService } from 'src/services'
-import { List, Avatar } from 'src/components'
+import { UserList } from 'src/containers'
 import { DEFAULT_PAGE_SIZE } from 'src/config'
 import { IUser } from 'src/types'
-import classes from './User.module.scss'
 
 export const enum FollowType {
   Followers = 'followers',
@@ -27,42 +27,33 @@ const UserFollowers: React.FunctionComponent<IUserFollowersProps> = ({
     try {
       setLoading(true)
       const service = new ApiService<IUser[]>('users')
-      const followers = await service.get({
+      const list = await service.get({
         path: `${name}/${type}`,
         data: {
           page: ++page,
           per_page: DEFAULT_PAGE_SIZE,
         },
       })
-      setFollowers(followers)
-      if (followers.length < DEFAULT_PAGE_SIZE) {
+      setFollowers(followers.concat(list))
+      if (list.length < DEFAULT_PAGE_SIZE) {
         setHasLoadAll(true)
       }
     } catch (error) {
-      console.log(error)
+      Notify.error(error.message)
     } finally {
       setLoading(false)
     }
   }
-  const renderFollower = (follower: IUser) => (
-    <div key={follower.id} className={classes.follower}>
-      <Avatar user={follower}/>
-      <span>
-        <a href={`/users/${follower.login}`}>{follower.login}</a>
-      </span>
-    </div>
-  )
   React.useEffect(() => {
     page = 0
     fetchFollowers()
   }, [])
   return (
-    <List
-      list={followers}
+    <UserList
+      users={followers}
       loading={loading}
       hasLoadAll={hasLoadAll}
       loadMore={fetchFollowers}
-      renderItem={renderFollower}
     />
   )
 }
