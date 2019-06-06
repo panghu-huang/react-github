@@ -16,13 +16,15 @@ interface IListProps {
 const List: React.FunctionComponent<IListProps> = ({
 list, loading, renderItem, loadMore, hasLoadAll,
 }) => {
+  // 避免 event 当做 loadMore 的参数
+  const loader = loadMore ? () => loadMore() : undefined
   return (
     <Container>
       {list.map(renderItem)}
       <Loading loading={loading}/>
       {false === loading && false === hasLoadAll && (
         <div className={classes.foot}>
-          <Button onClick={loadMore}>load more</Button>
+          <Button onClick={loader}>load more</Button>
         </div>
       )}
       {hasLoadAll && (

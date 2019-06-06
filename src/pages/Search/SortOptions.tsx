@@ -1,16 +1,18 @@
 import * as React from 'react'
 import { Select } from 'zent'
-import { SearchTargetType } from './SearchTarget'
+import { ISearchType } from './SearchType'
+import classes from './Search.module.scss'
 
 export interface ISortOptionsProps {
-  searchTarget: SearchTargetType
+  type: ISearchType
+  value: string
   onChange: (sort: string) => void
 }
 
 const sortOptions = {
   repositories: [
     {
-      text: 'Best match', value: '',
+      text: 'Best match', value: 'match',
     },
     {
       text: 'Stars', value: 'stars',
@@ -24,7 +26,7 @@ const sortOptions = {
   ],
   users: [
     {
-      text: 'Best match', value: '',
+      text: 'Best match', value: 'match',
     },
     {
       text: 'Followers', value: 'followers',
@@ -39,17 +41,20 @@ const sortOptions = {
 }
 
 const SortOptions: React.FunctionComponent<ISortOptionsProps> = props => {
-  const options = sortOptions[props.searchTarget]
+  const options = sortOptions[props.type]
   const handleChange = (evt: any) => {
-    props.onChange(evt.target.value)
+    const value = evt.target.value
+    props.onChange(value === 'match' ? '' : value)
   }
   return (
     <Select
+      className={classes.sortOptions}
       data={options}
+      value={props.value || 'match'}
       onChange={handleChange}
     />
   )
 }
 
-export default SortOptions
+export default React.memo(SortOptions)
 
