@@ -7,8 +7,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       REACT_APP_NAME: string
-      REACT_APP_CLIENT_ID: string
-      REACT_APP_CLIENT_SECRET: string
+      REACT_APP_BASENAME: string
     }
   }
 }

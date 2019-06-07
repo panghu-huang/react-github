@@ -8,7 +8,9 @@ const initialState: IStore = {
 }
 
 const otherActions = {
-  history: createBrowserHistory(),
+  history: createBrowserHistory({
+    basename: process.env.REACT_APP_BASENAME,
+  }),
 }
 
 export const storer = genStorer<IStore, typeof otherActions>(initialState, otherActions)
