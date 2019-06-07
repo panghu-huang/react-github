@@ -11,11 +11,11 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("/wokeyi/wokeyi.github.io/react-github/workbox-v3.6.3/workbox-sw.js");
-workbox.setConfig({modulePathPrefix: "/wokeyi/wokeyi.github.io/react-github/workbox-v3.6.3"});
+importScripts("/react-github/workbox-v3.6.3/workbox-sw.js");
+workbox.setConfig({modulePathPrefix: "/react-github/workbox-v3.6.3"});
 
 importScripts(
-  "/wokeyi/wokeyi.github.io/react-github/precache-manifest.e981116841cb9223659253ff4c0f294a.js"
+  "/react-github/precache-manifest.3cd9e915380addcc9513b0360b97f207.js"
 );
 
 workbox.clientsClaim();
@@ -29,7 +29,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/wokeyi/wokeyi.github.io/react-github/index.html", {
+workbox.routing.registerNavigationRoute("/react-github/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
