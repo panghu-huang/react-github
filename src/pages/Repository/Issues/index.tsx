@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Notify } from 'zent'
+import { Link } from 'react-router-dom'
 import { ApiService } from 'src/services'
 import { List } from 'src/components'
 import { TimeUtils } from 'src/utils'
@@ -46,7 +47,9 @@ const RepositoryIssues: React.FunctionComponent<IRepositoryIssuesProps> = ({
       <div className={classes.issue} key={issue.id}>
         <div className={classes.main}>
           <div className={classes.head}>
-            <h4 className={classes.title}>{issue.title}</h4>
+            <h4 className={classes.title}>
+              <Link to={`/issues/${owner}/${name}/${issue.number}`}>{issue.title}</Link>
+            </h4>
             {issue.labels.map(issueLabel => (
               <span
                 key={issueLabel.id}
@@ -54,8 +57,8 @@ const RepositoryIssues: React.FunctionComponent<IRepositoryIssuesProps> = ({
                 style={{
                   backgroundColor: `#${issueLabel.color}`,
                 }}>
-              {issueLabel.name}
-            </span>
+                {issueLabel.name}
+              </span>
             ))}
           </div>
           <p className={classes.body}>

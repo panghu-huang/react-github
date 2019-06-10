@@ -28,6 +28,10 @@ const routes: RouteProps[] = [
     path: '/search',
     component: pages.Search,
   },
+  {
+    path: '/issues/:owner/:name/:number',
+    component: pages.Issues,
+  },
 ]
 
 export default routes

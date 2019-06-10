@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { NumberUtils } from 'src/utils'
 import { IRepository } from 'src/types'
 import { UserType } from 'src/config'
-import classes from './Head.module.scss'
+import classes from './RepositoryHead.module.scss'
 
 interface IRepositoryHeadProps {
   owner: string
@@ -29,19 +30,19 @@ const RepositoryHead: React.FunctionComponent<IRepositoryHeadProps> = ({
           <span className={classes.action}>
             <span className={classes.actionLabel}>Watch</span>
             <span className={classes.actionValue}>
-              {repository.subscribers_count}
+              {NumberUtils.formatBigNumber(repository.subscribers_count)}
             </span>
           </span>
           <span className={classes.action}>
             <span className={classes.actionLabel}>Star</span>
             <span className={classes.actionValue}>
-              {repository.stargazers_count}
+              {NumberUtils.formatBigNumber(repository.stargazers_count)}
             </span>
           </span>
           <span className={classes.action}>
             <span className={classes.actionLabel}>Fork</span>
             <span className={classes.actionValue}>
-              {repository.forks_count}
+              {NumberUtils.formatBigNumber(repository.forks_count)}
             </span>
           </span>
         </div>
