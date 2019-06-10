@@ -20,6 +20,7 @@ export interface IIssuesState {
   issue: IIssue | null
   repository: IRepository | null
   comments: IComment[]
+  commentLoading: boolean
 }
 
 class Issues extends React.Component<IIssuesProps, IIssuesState> {
@@ -33,6 +34,7 @@ class Issues extends React.Component<IIssuesProps, IIssuesState> {
       issue: null,
       repository: null,
       comments: [],
+      commentLoading: false,
     }
   }
 
@@ -43,7 +45,7 @@ class Issues extends React.Component<IIssuesProps, IIssuesState> {
   }
 
   public render() {
-    const { repository, comments, issue } = this.state
+    const { repository, comments, issue, commentLoading } = this.state
     return (
       <Page title={this.title}>
         <RepositoryHead
@@ -55,7 +57,10 @@ class Issues extends React.Component<IIssuesProps, IIssuesState> {
         <h1 className={classes.title}>
           {issue && issue.title}
         </h1>
-        <Comments comments={comments}/>
+        <Comments
+          loading={commentLoading}
+          comments={comments}
+        />
       </Page>
     )
   }
@@ -97,6 +102,7 @@ class Issues extends React.Component<IIssuesProps, IIssuesState> {
 
   private fetchComments = async () => {
     try {
+      this.setState({ commentLoading: true })
       const { owner, name, number } = this.matchedParams
       const service = new ApiService<IComment[]>('repos')
       const cmts = await service.get({
@@ -105,6 +111,7 @@ class Issues extends React.Component<IIssuesProps, IIssuesState> {
       this.setState(({ comments }) => {
         return {
           comments: comments.concat(cmts),
+          commentLoading: false,
         }
       })
     } catch (error) {

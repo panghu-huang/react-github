@@ -6,10 +6,11 @@ import classes from './Issues.module.scss'
 
 export interface ICommentsProps {
   comments: IComment[]
+  loading: boolean
 }
 
 const Comments: React.FunctionComponent<ICommentsProps> = ({
-  comments,
+  comments, loading,
 }) => {
   const renderer = (comment: IComment) => (
     <div key={comment.id} className={classes.comment}>
@@ -26,7 +27,7 @@ const Comments: React.FunctionComponent<ICommentsProps> = ({
   )
   return (
     <List
-      loading={false}
+      loading={loading}
       list={comments}
       renderItem={renderer}
     />
