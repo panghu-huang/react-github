@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Location } from 'history'
+import { Notify } from 'zent'
+import { RepositoryHead } from 'src/containers'
 import { Page, Tabs } from 'src/components'
 import { ApiService } from 'src/services'
 import { IRepositoryContent, IRepository } from 'src/types'
 import isEqual from 'lodash/isEqual'
-import RepositoryHead from './Head'
 import RepositoryCode from './Code'
 import RepositoryIssues from './Issues'
 
@@ -96,7 +97,7 @@ class Repository extends React.Component<IRepositoryProps, IRepositoryState> {
       })
       this.setState({ repository })
     } catch (error) {
-      console.log(error)
+      Notify.error(error.message)
     }
   }
 

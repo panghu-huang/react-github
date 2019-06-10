@@ -16,6 +16,7 @@
     "object-literal-sort-keys": false,
     "no-shadowed-variable": false,
     "no-console": false,
-    "interface-name": false
+    "interface-name": false,
+    "variable-name": false
   }
 }

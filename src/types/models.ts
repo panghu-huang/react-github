@@ -118,3 +118,33 @@ export interface ICommit {
 export interface IBranch {
   name: string
 }
+
+export interface IIssueLabel {
+  color: string
+  default: boolean
+  name: string
+  id: number
+}
+
+export interface IIssue {
+  id: number
+  title: string
+  body: string
+  user: IUser
+  created_at: string
+  updated_at: string
+  closed_at: string | null
+  state: 'open' | 'closed'
+  labels: IIssueLabel[]
+  number: number
+  comments: number
+  comments_url: string
+}
+
+export interface IComment {
+  id: number
+  body: string
+  user: IUser
+  created_at: string
+  updated_at: string
+}

@@ -1,0 +1,35 @@
+.divider {
+  margin: 20px 0;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.title {
+  font-size: 28px;
+  color: var(--title-color);
+}
+
+.comment {
+  display: flex;
+  margin-top: 20px;
+}
+
+.commentMain {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.commentHead {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.commentBody {
+  padding: 20px;
+  max-width: 900px;
+}
+
+.commentAvatar {
+  margin-top: 8px;
+}
