@@ -47,16 +47,20 @@
   font-weight: 900;
 }
 
-.iconTheme {
+.icon {
   margin-left: 20px;
   color: var(--primary-color);
   font-size: 24px;
   opacity: 0.8;
 }
 
-.iconTheme:hover {
+.icon:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+:global(.icon-user) {
+  font-size: 18px;
 }
 
 .themeDialog {
@@ -76,4 +80,9 @@
   display: block;
   margin: 0 auto;
   width: 100%;
+}
+
+.btnChangeLoginName {
+  width: 100%;
+  margin-top: 20px;
 }

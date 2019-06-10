@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 import { StoreContext, actions, storer } from 'src/store'
 import { Header } from 'src/containers'
-import { DEFAULT_LOGIN_NAME, THEME_COLORS } from 'src/config'
+import { DEFAULT_LOGIN_NAME, THEME_COLORS, SAVED_LOGIN_KEY } from 'src/config'
 import { IStore } from 'src/types'
 import routes from './routes'
 import './global.scss'
@@ -12,7 +12,7 @@ class GithubApp extends React.Component<any, IStore> {
   constructor(props: any) {
     super(props)
     this.state = {
-      login: DEFAULT_LOGIN_NAME,
+      login: this.getLoginName(),
     }
     storer.bindSetStore(this.setState as any)
   }
@@ -25,7 +25,7 @@ class GithubApp extends React.Component<any, IStore> {
     return (
       <Router history={actions.history}>
         <StoreContext.Provider value={this.state}>
-          <Header />
+          <Header/>
           <Switch>
             {routes.map(route => {
               return (
@@ -49,6 +49,11 @@ class GithubApp extends React.Component<any, IStore> {
         document.body.style.setProperty(value, color)
       }
     })
+  }
+
+  private getLoginName() {
+    return localStorage.getItem(SAVED_LOGIN_KEY)
+      || DEFAULT_LOGIN_NAME
   }
 
 }
