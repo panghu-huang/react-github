@@ -7,14 +7,20 @@ import { IStore } from 'src/types'
 import routes from './routes'
 import './global.scss'
 
-class GithubApp extends React.Component<any, IStore> {
+interface IGithubAppState {
+  store: IStore
+}
+
+class GithubApp extends React.Component<any, IGithubAppState> {
 
   constructor(props: any) {
     super(props)
     this.state = {
-      login: this.getLoginName(),
+      store: {
+        login: this.getLoginName(),
+      },
     }
-    storer.bindSetStore(this.setState as any)
+    storer.bindSetStore(this.setState.bind(this))
   }
 
   public componentDidMount() {
@@ -24,7 +30,7 @@ class GithubApp extends React.Component<any, IStore> {
   public render() {
     return (
       <Router history={actions.history}>
-        <StoreContext.Provider value={this.state}>
+        <StoreContext.Provider value={this.state.store}>
           <Header/>
           <Switch>
             {routes.map(route => {

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Dialog, Input, Button } from 'zent'
+import { actions } from 'src/store'
 import { SAVED_LOGIN_KEY } from 'src/config'
 import classes from './Header.module.scss'
 
@@ -18,9 +19,15 @@ const LoginNameDialog: React.FunctionComponent<ILoginNameDialogProps> = ({
   const changeLoginName = () => {
     if (value) {
       localStorage.setItem(SAVED_LOGIN_KEY, value)
+      actions.store.setStore({ login: value })
       window.location.reload()
     } else {
       onClose()
+    }
+  }
+  const handleInputKeydown = (evt: React.KeyboardEvent) => {
+    if (evt.keyCode === 13) {
+      changeLoginName()
     }
   }
   return (
@@ -29,10 +36,16 @@ const LoginNameDialog: React.FunctionComponent<ILoginNameDialogProps> = ({
       visible={visible}
       onClose={onClose}>
       <Input
+        autoFocus={true}
         value={value}
         onChange={handleChange}
+        onKeyDown={handleInputKeydown}
       />
-      <Button className={classes.btnChangeLoginName} onClick={changeLoginName}>确定</Button>
+      <Button
+        className={classes.btnChangeLoginName}
+        onClick={changeLoginName}>
+        确定
+      </Button>
     </Dialog>
   )
 }

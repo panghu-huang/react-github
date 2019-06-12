@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Input } from 'zent'
-import { actions } from 'src/store'
+import { actions, StoreContext } from 'src/store'
 import ThemeDialog from './ThemeDialog'
 import LoginNameDialog from './LoginNameDialog'
 import classNames from 'classnames'
 import classes from './Header.module.scss'
 
 const Header: React.FunctionComponent = () => {
+  const context = React.useContext(StoreContext)
   const [themeDialogVisible, setThemeDialogVisible] = React.useState(false)
   const [loginNameDialogVisible, setLoginNameDialogVisible] = React.useState(false)
   const [keyword, setKeyword] = React.useState(
@@ -36,6 +37,11 @@ const Header: React.FunctionComponent = () => {
           <Link to='/'>Github</Link>
         </h3>
         <ul>
+          <li>
+            <NavLink to={`/users/${context.login}`} activeClassName={classes.activeLink}>
+              {context.login}
+            </NavLink>
+          </li>
           <li>
             <NavLink to='/activities' activeClassName={classes.activeLink}>
               Activities
