@@ -15,7 +15,7 @@ importScripts("/react-github/workbox-v3.6.3/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "/react-github/workbox-v3.6.3"});
 
 importScripts(
-  "/react-github/precache-manifest.b9f64e638fe24a53310ca68daf5f4e6a.js"
+  "/react-github/precache-manifest.7ca4777627a172f50892cab9c2bd2ae6.js"
 );
 
 workbox.clientsClaim();
