@@ -1,47 +1,37 @@
 import * as React from 'react'
-import { Notify } from 'zent'
-import { ApiService } from 'src/services'
+import { useFetch } from 'src/hooks'
 import { RepositoryList } from 'src/containers'
 import { Page } from 'src/components'
-import { DEFAULT_PAGE_SIZE } from 'src/config'
-import { IRepository, ISearchRepositories } from 'src/types'
+import { ISearchRepositories } from 'src/types'
 
-let page = 0
+type T = ISearchRepositories
 
 const Popular: React.FunctionComponent = () => {
-  const [loading, setLoading] = React.useState(true)
-  const [repositories, setRepositories] = React.useState<IRepository[]>([])
-  const fetchRepositories = async () => {
-    try {
-      setLoading(true)
-      const service = new ApiService<ISearchRepositories>('search')
-      const { items } = await service.get({
-        path: 'repositories',
-        data: {
-          q: 'JavaScript',
-          sort: 'stars',
-          page: ++page,
-          per_page: DEFAULT_PAGE_SIZE,
-        },
-      })
-      setRepositories(repositories.concat(items))
-    } catch (e) {
-      Notify.error(e.message)
-    } finally {
-      setLoading(false)
+  function formatData(oldData: T | null, newData: T) {
+    if (oldData === null) {
+      return newData
+    }
+    return {
+      ...newData,
+      items: oldData.items.concat(newData.items),
     }
   }
-  React.useEffect(() => {
-    page = 0
-    fetchRepositories()
-  }, [])
+  const { data, hasLoadAll, loading, fetchData } = useFetch<T>({
+    routeName: 'search',
+    path: 'repositories',
+    params: {
+      q: 'JavaScript',
+      sort: 'stars',
+    },
+    formatter: formatData,
+  })
   return (
     <Page title='Popular JavaScript Repositories'>
       <RepositoryList
         loading={loading}
-        repositories={repositories}
-        loadMore={fetchRepositories}
-        hasLoadAll={false}
+        repositories={data ? data.items : []}
+        loadMore={fetchData}
+        hasLoadAll={hasLoadAll}
       />
     </Page>
   )

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { Notify } from 'zent'
-import { ApiService } from 'src/services'
+import { useFetch } from 'src/hooks'
 import { UserInfoBar } from 'src/containers'
 import { Page, Loading, Tabs, TabTitle } from 'src/components'
 import { IUser } from 'src/types'
@@ -18,22 +17,11 @@ const User: React.FunctionComponent<IUserProps> = ({
   match,
 }) => {
   const { name } = match.params
-  const [user, setUser] = React.useState<IUser | null>(null)
-  const fetchUser = async () => {
-    try {
-      const service = new ApiService<IUser>('users')
-      const user = await service.get({
-        path: name,
-      })
-      setUser(user)
-    } catch (error) {
-      Notify.error(error.message)
-    }
-  }
-  React.useEffect(() => {
-    fetchUser()
-  }, [name])
-  if (!user) {
+  const { data: user, loading } = useFetch<IUser>({
+    routeName: 'users',
+    path: name,
+  })
+  if (loading) {
     return <Loading loading={true}/>
   }
   return (
@@ -41,7 +29,7 @@ const User: React.FunctionComponent<IUserProps> = ({
       <UserInfoBar user={user}/>
       <Tabs>
         <Tabs.TabPane
-          tabKey='repositories' 
+          tabKey='repositories'
           title={
             <TabTitle title='Repositories' count={user.public_repos}/>
           }>

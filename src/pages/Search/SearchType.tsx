@@ -15,7 +15,7 @@ export interface ISearchTypeProps {
 }
 
 const SearchType: React.FunctionComponent<ISearchTypeProps> = props => {
-  const generateHandler = (type: ISearchType) => {
+  const createHandler = (type: ISearchType) => {
     return () => {
       props.onChange(type)
     }
@@ -25,7 +25,7 @@ const SearchType: React.FunctionComponent<ISearchTypeProps> = props => {
       <p
         key={type}
         className={classes.select}
-        onClick={generateHandler(type)}>
+        onClick={createHandler(type)}>
         {type}
       </p>
     )
