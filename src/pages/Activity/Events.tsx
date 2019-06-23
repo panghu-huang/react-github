@@ -1,50 +1,23 @@
 import * as React from 'react'
-import { Notify } from 'zent'
 import { EventList } from 'src/containers'
+import { useFetch } from 'src/hooks'
 import { StoreContext } from 'src/store'
-import { ApiService } from 'src/services'
 import { IEvent } from 'src/types'
-import { DEFAULT_PAGE_SIZE } from 'src/config'
-
-let page = 0
 
 const Events: React.FunctionComponent = () => {
   const context = React.useContext(StoreContext)
-  const [loading, setLoading] = React.useState(true)
-  const [events, setEvents] = React.useState<IEvent[]>([])
-  const [hasLoadAll, setHasLoadAll] = React.useState(false)
-  const fetchEvents = async () => {
-    try {
-      setLoading(true)
-      const service = new ApiService<IEvent[]>('users')
-      const evts = await service.get({
-        path: `${context.login}/events`,
-        data: {
-          page: ++page,
-        },
-      })
-      if (evts.length < DEFAULT_PAGE_SIZE) {
-        setHasLoadAll(true)
-      }
-      setEvents(events.concat(evts))
-    } catch (e) {
-      Notify.error(e.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-  React.useEffect(() => {
-    page = 0
-    fetchEvents()
-  } ,[])
+  const { data, fetchData, loading, hasLoadAll } = useFetch<IEvent[]>({
+    routeName: 'users',
+    path: `${context.login}/events`,
+  })
   return (
-    <EventList 
+    <EventList
       loading={loading}
-      events={events}
-      loadMore={fetchEvents}
+      events={data || []}
+      loadMore={fetchData}
       hasLoadAll={hasLoadAll}
     />
   )
 }
 
-export default Events 
+export default Events
