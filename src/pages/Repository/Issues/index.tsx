@@ -41,13 +41,11 @@ const RepositoryIssues: React.FunctionComponent<IRepositoryIssuesProps> = ({
             #{issue.number} opened {TimeUtils.fromNow(issue.created_at)} by {issue.user.login}
           </p>
         </div>
-        {issue.comments
-          ? (
-            <span className={`iconfont icon-comment ${classes.comments}`}>
+        {issue.comments && (
+          <span className={`iconfont icon-comment ${classes.comments}`}>
             {issue.comments}
-            </span>
-          )
-          : null}
+          </span>
+        )}
       </div>
     )
   }

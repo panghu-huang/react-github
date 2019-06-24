@@ -15,12 +15,12 @@ export interface ISearchTypeProps {
 }
 
 const SearchType: React.FunctionComponent<ISearchTypeProps> = props => {
-  const createHandler = (type: ISearchType) => {
+  const createHandler = React.useCallback((type: ISearchType) => {
     return () => {
       props.onChange(type)
     }
-  }
-  const menu = Object.values(ISearchType).map(type => {
+  }, [])
+  const menu = React.useMemo(() => Object.values(ISearchType).map(type => {
     return (
       <p
         key={type}
@@ -29,7 +29,7 @@ const SearchType: React.FunctionComponent<ISearchTypeProps> = props => {
         {type}
       </p>
     )
-  })
+  }), [])
   return (
     <Pop
       trigger='hover'

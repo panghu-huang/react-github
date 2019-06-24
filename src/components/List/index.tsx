@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Button } from 'zent'
+import { isFalse } from 'src/utils'
 import Container from '../Container'
 import Loading from '../Loading'
 import classNames from 'classnames'
@@ -22,7 +23,7 @@ list, loading, renderItem, loadMore, hasLoadAll,
     <Container>
       {list.map(renderItem)}
       <Loading loading={loading}/>
-      {false === loading && false === hasLoadAll && (
+      {isFalse(loading) && isFalse(hasLoadAll) && (
         <div className={classes.foot}>
           <Button onClick={loader}>load more</Button>
         </div>

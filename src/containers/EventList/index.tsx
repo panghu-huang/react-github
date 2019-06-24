@@ -25,44 +25,44 @@ const EventList: React.FunctionComponent<IEventListProps> = ({
     switch (event.type) {
       case EventType.ForkEvent:
         return (
-          <ForkEvent key={event.id} event={event} />
+          <ForkEvent key={event.id} event={event}/>
         )
       case EventType.WatchEvent:
         return (
-          <WatchEvent key={event.id} event={event} />
+          <WatchEvent key={event.id} event={event}/>
         )
       case EventType.PublicEvent:
         return (
-          <PublicEvent key={event.id} event={event} />
+          <PublicEvent key={event.id} event={event}/>
         )
       case EventType.DeleteEvent:
         return (
-          <DeleteEvent key={event.id} event={event} />
+          <DeleteEvent key={event.id} event={event}/>
         )
       case EventType.PushEvent:
         return (
-          <PushEvent key={event.id} event={event} />
+          <PushEvent key={event.id} event={event}/>
         )
       case EventType.PullRequestEvent:
         return (
-          <PullRequestEvent key={event.id} event={event} />
+          <PullRequestEvent key={event.id} event={event}/>
         )
       case EventType.CreateEvent:
         return (
-          <CreateEvent key={event.id} event={event} />
+          <CreateEvent key={event.id} event={event}/>
         )
       case EventType.MemberEvent:
         return (
-          <MemberEvent key={event.id} event={event} />
+          <MemberEvent key={event.id} event={event}/>
         )
       default:
         return (
-          <span style={{ backgroundColor: 'red' }}>{'Unknown Event: ' + event.type}</span>
+          <span style={{ backgroundColor: 'red' }}>Unknown Event: {event.type}</span>
         )
     }
   }
   return (
-    <List 
+    <List
       loading={loading}
       list={events}
       renderItem={renderEvent}
@@ -72,4 +72,4 @@ const EventList: React.FunctionComponent<IEventListProps> = ({
   )
 }
 
-export default EventList 
+export default EventList

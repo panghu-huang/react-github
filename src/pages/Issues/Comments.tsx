@@ -9,30 +9,29 @@ export interface ICommentsProps {
   loading: boolean
 }
 
-const Comments: React.FunctionComponent<ICommentsProps> = ({
-  comments, loading,
-}) => {
-  const renderer = (comment: IComment) => (
-    <div key={comment.id} className={classes.comment}>
-      <Avatar user={comment.user} className={classes.commentAvatar}/>
-      <div className={classes.commentMain}>
-        <div className={classes.commentHead}>
-          {comment.user.login} commented {TimeUtils.fromNow(comment.updated_at)}
-        </div>
-        <div className={classes.commentBody}>
-          <MarkdownPreview markdown={comment.body}/>
-        </div>
+const renderer = (comment: IComment) => (
+  <div key={comment.id} className={classes.comment}>
+    <Avatar user={comment.user} className={classes.commentAvatar}/>
+    <div className={classes.commentMain}>
+      <div className={classes.commentHead}>
+        {comment.user.login} commented {TimeUtils.fromNow(comment.updated_at)}
+      </div>
+      <div className={classes.commentBody}>
+        <MarkdownPreview markdown={comment.body}/>
       </div>
     </div>
-  )
-  return (
-    <List
-      loading={loading}
-      list={comments}
-      renderItem={renderer}
-    />
-  )
-}
+  </div>
+)
+
+const Comments: React.FunctionComponent<ICommentsProps> = ({
+  comments, loading,
+}) => (
+  <List
+    loading={loading}
+    list={comments}
+    renderItem={renderer}
+  />
+)
 
 export default Comments
 
