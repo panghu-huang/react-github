@@ -7,11 +7,7 @@ import { IUser } from 'src/types'
 import OrgRepositoryList from './RepositoryList'
 import OrgMembers from './Members'
 
-interface IParams {
-  name: string
-}
-
-type IOrganizationProps = RouteComponentProps<IParams>
+type IOrganizationProps = RouteComponentProps<{ name: string }>
 
 const Organization: React.FunctionComponent<IOrganizationProps> = ({
   match,

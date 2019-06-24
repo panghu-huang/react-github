@@ -13,9 +13,9 @@ const options = [
 ]
 
 const SortOrder: React.FunctionComponent<ISortOrderProps> = props => {
-  const handleChange = (evt: any) => {
+  const handleChange = React.useCallback((evt: any) => {
     props.onChange(evt.target.value)
-  }
+  }, [])
   return (
     <Select
       className={classes.sortOrder}

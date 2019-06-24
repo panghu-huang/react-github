@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Pop, Button } from 'zent'
-import { ApiService } from 'src/services'
+import { IUseFetchResults } from 'src/hooks'
+import { DataLoader } from 'src/containers'
 import { IBranch } from 'src/types'
 import classes from './RepositoryCode.module.scss'
 
@@ -15,7 +16,6 @@ interface IRepositoryCodeHeadProps {
 
 interface IRepositoryCodeHeadState {
   branch: string
-  branches: IBranch[]
 }
 
 class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, IRepositoryCodeHeadState> {
@@ -24,18 +24,25 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
     super(props)
     this.state = {
       branch: props.branch,
-      branches: [],
     }
   }
 
-  public componentDidMount() {
-    this.fetchBranches()
+  public render() {
+    const { owner, name } = this.props
+    return (
+      <DataLoader
+        routeName='repos'
+        path={`${owner}/${name}/branches`}>
+        {this.renderMainContent}
+      </DataLoader>
+    )
   }
 
-  public render() {
-    const { branches, branch } = this.state
-    const path = this.renderPath()
+  private renderMainContent = ({ data }: IUseFetchResults<IBranch[]>) => {
+    const branches = data || []
     const branchesMenu = this.renderBranches(branches)
+    const { branch } = this.state
+    const path = this.renderPath()
     return (
       <div className={classes.head}>
         <Pop
@@ -88,19 +95,6 @@ class RepositoryCodeHead extends React.PureComponent<IRepositoryCodeHeadProps, I
       return pathComponent
     }
     return null
-  }
-
-  private fetchBranches = async () => {
-    try {
-      const { owner, name } = this.props
-      const service = new ApiService<IBranch[]>('repos')
-      const branches = await service.get({
-        path: `${owner}/${name}/branches`,
-      })
-      this.setState({ branches })
-    } catch (error) {
-      console.log(error)
-    }
   }
 
 }

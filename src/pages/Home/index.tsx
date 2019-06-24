@@ -6,16 +6,17 @@ import { ISearchRepositories } from 'src/types'
 
 type T = ISearchRepositories
 
-const Popular: React.FunctionComponent = () => {
-  function formatData(oldData: T | null, newData: T) {
-    if (oldData === null) {
-      return newData
-    }
-    return {
-      ...newData,
-      items: oldData.items.concat(newData.items),
-    }
+function formatData(oldData: T | null, newData: T) {
+  if (oldData === null) {
+    return newData
   }
+  return {
+    ...newData,
+    items: oldData.items.concat(newData.items),
+  }
+}
+
+const Popular: React.FunctionComponent = () => {
   const { data, hasLoadAll, loading, fetchData } = useFetch<T>({
     routeName: 'search',
     path: 'repositories',

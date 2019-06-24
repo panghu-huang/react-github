@@ -6,7 +6,7 @@ export interface IInputProps extends React.AllHTMLAttributes<HTMLInputElement> {
   suffix?: React.ReactNode
 }
 
-const Index: React.FunctionComponent<IInputProps> = ({
+const Input: React.FunctionComponent<IInputProps> = ({
   className, suffix, ...otherProps
 }) => {
   return (
@@ -17,5 +17,5 @@ const Index: React.FunctionComponent<IInputProps> = ({
   )
 }
 
-export default Index
+export default Input
 

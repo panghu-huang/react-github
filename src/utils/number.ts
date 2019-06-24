@@ -5,15 +5,19 @@ class NumberUtils {
    * @param num 数字
    */
   public static formatBigNumber(num: number) {
+    const unitLength = 3
     if (num) {
       const stringify = String(num)
-      if (stringify.length > 3) {
-        const startIndex = stringify.length % 3
-        const count = Math.floor(stringify.length / 3)
+      if (stringify.length > unitLength) {
+        const startIndex = stringify.length % unitLength
+        const count = Math.floor(stringify.length / unitLength)
         const result = [stringify.slice(0, startIndex)]
         for (let i = 0; i < count; i++) {
           result.push(
-            stringify.slice(i * 3 + startIndex, (i + 1) * 3 + startIndex)
+            stringify.slice(
+              i * unitLength + startIndex,
+              (i + 1) * unitLength + startIndex
+            )
           )
         }
         return result.filter(Boolean).join(',')

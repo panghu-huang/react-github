@@ -2,6 +2,7 @@ import * as React from 'react'
 import hljs from 'highlight.js'
 // @ts-ignore
 import markd from 'markit'
+import { isFalse } from 'src/utils'
 import 'highlight.js/styles/github.css'
 import './style.scss'
 
@@ -19,10 +20,10 @@ markd.setOptions({
 
 const MarkdownPreview = ({ markdown, transform, className }: IMarkdownPreviewProps) => {
   return (
-    <div 
+    <div
       className={`markdown-preview ${className}`}
       dangerouslySetInnerHTML={{
-        __html: transform === false ? markdown : markd(markdown),
+        __html: isFalse(transform) ? markdown : markd(markdown),
       }}
     />
   )

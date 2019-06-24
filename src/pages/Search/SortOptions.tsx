@@ -42,10 +42,10 @@ const sortOptions = {
 
 const SortOptions: React.FunctionComponent<ISortOptionsProps> = props => {
   const options = sortOptions[props.type]
-  const handleChange = (evt: any) => {
+  const handleChange = React.useCallback((evt: any) => {
     const value = evt.target.value
     props.onChange(value === 'match' ? '' : value)
-  }
+  }, [])
   return (
     <Select
       className={classes.sortOptions}
