@@ -18,58 +18,57 @@ interface IEventListProps {
   hasLoadAll?: boolean
 }
 
+function renderEvent(event: IEvent) {
+  switch (event.type) {
+    case EventType.ForkEvent:
+      return (
+        <ForkEvent key={event.id} event={event}/>
+      )
+    case EventType.WatchEvent:
+      return (
+        <WatchEvent key={event.id} event={event}/>
+      )
+    case EventType.PublicEvent:
+      return (
+        <PublicEvent key={event.id} event={event}/>
+      )
+    case EventType.DeleteEvent:
+      return (
+        <DeleteEvent key={event.id} event={event}/>
+      )
+    case EventType.PushEvent:
+      return (
+        <PushEvent key={event.id} event={event}/>
+      )
+    case EventType.PullRequestEvent:
+      return (
+        <PullRequestEvent key={event.id} event={event}/>
+      )
+    case EventType.CreateEvent:
+      return (
+        <CreateEvent key={event.id} event={event}/>
+      )
+    case EventType.MemberEvent:
+      return (
+        <MemberEvent key={event.id} event={event}/>
+      )
+    default:
+      return (
+        <span style={{ backgroundColor: 'red' }}>Unknown Event: {event.type}</span>
+      )
+  }
+}
+
 const EventList: React.FunctionComponent<IEventListProps> = ({
   loading, events, loadMore, hasLoadAll,
-}) => {
-  const renderEvent = (event: IEvent) => {
-    switch (event.type) {
-      case EventType.ForkEvent:
-        return (
-          <ForkEvent key={event.id} event={event}/>
-        )
-      case EventType.WatchEvent:
-        return (
-          <WatchEvent key={event.id} event={event}/>
-        )
-      case EventType.PublicEvent:
-        return (
-          <PublicEvent key={event.id} event={event}/>
-        )
-      case EventType.DeleteEvent:
-        return (
-          <DeleteEvent key={event.id} event={event}/>
-        )
-      case EventType.PushEvent:
-        return (
-          <PushEvent key={event.id} event={event}/>
-        )
-      case EventType.PullRequestEvent:
-        return (
-          <PullRequestEvent key={event.id} event={event}/>
-        )
-      case EventType.CreateEvent:
-        return (
-          <CreateEvent key={event.id} event={event}/>
-        )
-      case EventType.MemberEvent:
-        return (
-          <MemberEvent key={event.id} event={event}/>
-        )
-      default:
-        return (
-          <span style={{ backgroundColor: 'red' }}>Unknown Event: {event.type}</span>
-        )
-    }
-  }
-  return (
-    <List
-      loading={loading}
-      list={events}
-      renderItem={renderEvent}
-      loadMore={loadMore}
-      hasLoadAll={hasLoadAll}
-    />
-  )
-}
+}) => (
+  <List
+    loading={loading}
+    list={events}
+    renderItem={renderEvent}
+    loadMore={loadMore}
+    hasLoadAll={hasLoadAll}
+  />
+)
 
 export default EventList

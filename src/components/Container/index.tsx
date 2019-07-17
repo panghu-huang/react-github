@@ -9,8 +9,9 @@ interface IContainerProps extends React.AllHTMLAttributes<HTMLElement> {
 const Container: React.FunctionComponent<IContainerProps> = ({
   children, className, ...otherProps
 }) => {
+  const cls = React.useMemo(() => classNames(className, classes.container), [className])
   return (
-    <section className={classNames(className, classes.container)} {...otherProps}>
+    <section className={cls} {...otherProps}>
       {children}
     </section>
   )

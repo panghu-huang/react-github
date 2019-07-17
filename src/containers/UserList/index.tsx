@@ -10,10 +10,8 @@ interface IUserListProps {
   hasLoadAll?: boolean
 }
 
-const UserList: React.FunctionComponent<IUserListProps> = ({
-  users, loading, loadMore, hasLoadAll,
-}) => {
-  const itemRenderer = (user: IUser) => (
+function renderer(user: IUser) {
+  return (
     <div key={user.id} className={classes.user}>
       <Avatar user={user}/>
       <span>
@@ -21,15 +19,18 @@ const UserList: React.FunctionComponent<IUserListProps> = ({
       </span>
     </div>
   )
-  return (
-    <List
-      list={users}
-      loading={loading}
-      hasLoadAll={hasLoadAll}
-      loadMore={loadMore}
-      renderItem={itemRenderer}
-    />
-  )
 }
+
+const UserList: React.FunctionComponent<IUserListProps> = ({
+  users, loading, loadMore, hasLoadAll,
+}) => (
+  <List
+    list={users}
+    loading={loading}
+    hasLoadAll={hasLoadAll}
+    loadMore={loadMore}
+    renderItem={renderer}
+  />
+)
 
 export default UserList

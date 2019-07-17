@@ -9,9 +9,11 @@ interface ITabTitleProps {
 const TabTitle: React.FunctionComponent<ITabTitleProps> = ({
   title, count,
 }) => {
-  const formatted = count
-    ? count > 1000 ?  `${+(count / 1000).toFixed(1)}k` : count
-    : null
+  const formatted = React.useMemo(() => {
+    return count
+      ? count > 1000 ?  `${+(count / 1000).toFixed(1)}k` : count
+      : null
+  }, [count])
   return (
     <span>
       {title}
